@@ -74,5 +74,6 @@ debug_color = Color(0, 0.5372549, 0.96862745, 0)
 
 [node name="PlayerCamera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
+enabled = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

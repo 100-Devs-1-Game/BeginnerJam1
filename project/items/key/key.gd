@@ -10,5 +10,6 @@ func _ready():
 
 
 func _on_key_picked_up(_other_area: Area2D) -> void:
+	# TODO Simplified solution implemented only for the purposes of the Start Menu
 	doorway.hide()
 	hide()

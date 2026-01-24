@@ -18,6 +18,9 @@ var grid_position := Vector2i.ZERO
 var _is_moving := false
 var _ended_on_ice := false
 var _last_requested_movement_direction := Vector2.ZERO
+var _player_force_moved := false
+var _player_force_move_direction := Vector2.ZERO
+var _player_force_move_target := Vector2i.ZERO
 #endregion
 
 #region onready variables
@@ -53,6 +56,8 @@ func move_character() -> void:
 	var desired_movement: Vector2
 	if _ended_on_ice:
 		desired_movement = _last_requested_movement_direction
+	elif _player_force_moved:
+		desired_movement = _player_force_move_direction
 	else:
 		desired_movement = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		if desired_movement.x != 0.0 and desired_movement.y != 0.0:
@@ -75,6 +80,8 @@ func move_character() -> void:
 	# TODO Initiate Turn
 	_is_moving = true
 	grid_position += desired_movement as Vector2i
+	if _player_force_moved:
+		_player_force_moved = grid_position != _player_force_move_target
 	_ended_on_ice = tile_data and tile_data.get_custom_data("ICE")
 	  # global_position + desired_movement * GRID_SIZE
 	var desired_global_pos: Vector2 = dungeon_tile_map.map_to_local(dungeon_tile_map.local_to_map(global_position) + (desired_movement as Vector2i))
@@ -97,6 +104,10 @@ func _on_area_entered(other_area: Area2D) -> void:
 
 
 #region class methods
-
+func force_move_player(direction: Vector2, amount: int) -> void:
+	_player_force_moved = true
+	_player_force_move_target = grid_position + ((direction * amount) as Vector2i)
+	_player_force_move_direction = direction
+	pass
 
 #endregion
