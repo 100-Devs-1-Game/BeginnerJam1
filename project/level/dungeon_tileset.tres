@@ -1,6 +1,9 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bkgx1a6xfjf5m"]
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://bkgx1a6xfjf5m"]
 
 [ext_resource type="Texture2D" uid="uid://caiurllnjqhxt" path="res://external_assets/placeholder/2d_dungeon_asset_pack/character and tileset/Dungeon_Tileset.png" id="1_y8dy1"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_y8dy1"]
+tile_data = PackedInt32Array(0, 65536, 0, 65536, 524288, 7, 131072, 131072, 6, 196608, 524288, 7, 262144, 131072, 6, 327680, 524288, 7, 393216, 131072, 6, 458752, 524288, 7, 524288, 131072, 6, 589824, 65536, 5, 655360, 524288, 7, 1, 65536, 0, 65537, 524288, 7, 131073, 131072, 6, 196609, 524288, 7, 262145, 131072, 6, 327681, 524288, 7, 393217, 131072, 6, 458753, 524288, 7, 524289, 131072, 6, 589825, 65536, 5, 655361, 524288, 7, 2, 65536, 0, 65538, 524288, 7, 131074, 131072, 6, 196610, 524288, 7, 262146, 131072, 6, 327682, 524288, 7, 393218, 131072, 6, 458754, 524288, 7, 524290, 131072, 6, 589826, 131072, 5, 655362, 524288, 7, 3, 65536, 0, 65539, 524288, 7, 131075, 131072, 6, 196611, 524288, 7, 262147, 131072, 6, 327683, 524288, 7, 393219, 131072, 6, 458755, 524288, 7, 524291, 131072, 6, 589827, 131072, 5, 655363, 524288, 7, 4, 65536, 0, 65540, 524288, 7, 131076, 262144, 1, 196612, 524288, 7, 262148, 262144, 2, 327684, 524288, 7, 393220, 262144, 2, 458756, 524288, 7, 524292, 262144, 3, 589828, 131072, 5, 655364, 524288, 7, 5, 524288, 7, 65541, 327680, 0, 131077, 327680, 1, 196613, 327680, 3, 262149, 327680, 1, 327685, 327680, 0, 393221, 327680, 0, 458757, 327680, 3, 524293, 327680, 2, 589829, 327680, 4, 655365, 524288, 7)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ddqrn"]
 texture = ExtResource("1_y8dy1")
@@ -143,3 +146,4 @@ custom_data_layer_1/type = 1
 custom_data_layer_2/name = "ICE"
 custom_data_layer_2/type = 1
 sources/0 = SubResource("TileSetAtlasSource_ddqrn")
+pattern_0 = SubResource("TileMapPattern_y8dy1")
