@@ -36,6 +36,10 @@ tile_map_data = PackedByteArray("AAAeABEAAAAIAAcAAAAeABAAAAAIAAcAAAAeAA8AAAAIAAc
 tile_set = ExtResource("2_2pfh5")
 metadata/_edit_lock_ = true
 
+[node name="LockedMenuCamera" type="Camera2D" parent="World"]
+unique_name_in_owner = true
+position = Vector2(240, 192)
+
 [node name="Player" parent="World" instance=ExtResource("3_n3gsq")]
 position = Vector2(144, 112)
 
@@ -356,10 +360,6 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayerStartArea"]
 shape = SubResource("RectangleShape2D_dr3nq")
 debug_color = Color(0.8666667, 0.8901961, 0.31764707, 0)
-
-[node name="LockedMenuCamera" type="Camera2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(240, 192)
 
 [node name="TransitionCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
