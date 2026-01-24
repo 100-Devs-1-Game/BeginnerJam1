@@ -1,5 +1,9 @@
 extends Node
 
+
+const TEST_LEVEL = preload("uid://clal44shu5gn")
+
+
 @onready var start_game_area: Area2D = %StartGameArea
 @onready var continue_game_area: Area2D = %ContinueGameArea
 @onready var settings_area: Area2D = %SettingsArea
@@ -14,6 +18,7 @@ func _ready() -> void:
 
 
 func _on_player_entered_start_game(_a) -> void:
+	get_tree().change_scene_to_packed.call_deferred(TEST_LEVEL)
 	print("start_game")
 
 

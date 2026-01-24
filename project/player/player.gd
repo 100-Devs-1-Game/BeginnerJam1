@@ -39,7 +39,8 @@ var _last_requested_movement_direction := Vector2.ZERO
 func _ready() -> void:
 	grid_position = (global_position / GRID_SIZE) as Vector2i
 	area.area_entered.connect(_on_area_entered)
-	dungeon_tile_map = get_parent().get_node_or_null("TileMapLayer")
+	dungeon_tile_map = get_parent().get_node("TileMapLayer")
+	assert(dungeon_tile_map is TileMapLayer)
 
 
 func _process(_delta: float) -> void:
@@ -63,9 +64,7 @@ func move_character() -> void:
 	_last_requested_movement_direction = desired_movement
 	var desired_location: Vector2i = grid_position + (desired_movement as Vector2i)
 	var tile_data: TileData
-	# TODO Wall check
-	if dungeon_tile_map and dungeon_tile_map is TileMapLayer:
-		tile_data = dungeon_tile_map.get_cell_tile_data(desired_location)
+	tile_data = dungeon_tile_map.get_cell_tile_data(desired_location)
 	if tile_data and tile_data.get_custom_data("WALL"):
 		if _ended_on_ice:
 			_ended_on_ice = false
@@ -77,7 +76,8 @@ func move_character() -> void:
 	_is_moving = true
 	grid_position += desired_movement as Vector2i
 	_ended_on_ice = tile_data and tile_data.get_custom_data("ICE")
-	var desired_global_pos: Vector2 = global_position + desired_movement * GRID_SIZE
+	  # global_position + desired_movement * GRID_SIZE
+	var desired_global_pos: Vector2 = dungeon_tile_map.map_to_local(dungeon_tile_map.local_to_map(global_position) + (desired_movement as Vector2i))
 	character_sprite.play("walking")
 	var tween := create_tween()
 	tween.tween_property(self, "global_position", desired_global_pos, TURN_DURATION).set_ease(Tween.EASE_IN)
