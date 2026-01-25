@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://clal44shu5gn"]
+[gd_scene load_steps=8 format=4 uid="uid://clal44shu5gn"]
 
-[ext_resource type="Texture2D" uid="uid://bfv2hglhdu15c" path="res://external_assets/placeholder/2d_dungeon_asset_pack/character and tileset/Dungeon_Tileset.png" id="1_8rkqs"]
+[ext_resource type="Texture2D" uid="uid://caiurllnjqhxt" path="res://external_assets/placeholder/2d_dungeon_asset_pack/character and tileset/Dungeon_Tileset.png" id="1_8rkqs"]
 [ext_resource type="Script" uid="uid://dou152w73pp3o" path="res://test/test_level.gd" id="1_klfgi"]
 [ext_resource type="PackedScene" uid="uid://csbdutbwqiure" path="res://player/player.tscn" id="3_ls30l"]
+[ext_resource type="PackedScene" uid="uid://xxkghhl0bts5" path="res://enemies/enemy.tscn" id="4_oxjuh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_klfgi"]
 texture = ExtResource("1_8rkqs")
@@ -112,6 +113,12 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_klfgi")
 
+[sub_resource type="Curve2D" id="Curve2D_piqwm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 144, 80, 0, 0, 0, 0, 176, 80, 0, 0, 0, 0, 208, 80, 0, 0, 0, 0, 240, 80, 0, 0, 0, 0, 240, 112, 0, 0, 0, 0, 240, 144, 0, 0, 0, 0, 240, 176, 0, 0, 0, 0, 208, 176, 0, 0, 0, 0, 176, 176, 0, 0, 0, 0, 144, 176, 0, 0, 0, 0, 144, 144, 0, 0, 0, 0, 144, 112)
+}
+point_count = 12
+
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_klfgi")
 
@@ -120,3 +127,11 @@ tile_map_data = PackedByteArray("AAAAAAAAAAACAAIAAAAAAAEAAAACAAIAAAAAAAIAAAACAAI
 tile_set = SubResource("TileSet_ls30l")
 
 [node name="Player" parent="." instance=ExtResource("3_ls30l")]
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("patrol_path_node", "target_tilemap") instance=ExtResource("4_oxjuh")]
+position = Vector2(144, 80)
+patrol_path_node = NodePath("../EnemyPath")
+target_tilemap = NodePath("../TileMapLayer")
+
+[node name="EnemyPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_piqwm")

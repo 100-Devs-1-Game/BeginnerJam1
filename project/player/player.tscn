@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://csbdutbwqiure"]
 
-[ext_resource type="Texture2D" uid="uid://ccqfci0sgsp" path="res://external_assets/placeholder/2d_dungeon_asset_pack/Character_animation/priests_idle/priest1/v1/priest1_v1_1.png" id="1_oul6g"]
+[ext_resource type="Texture2D" uid="uid://by2of1i4bfafe" path="res://external_assets/placeholder/2d_dungeon_asset_pack/Character_animation/priests_idle/priest1/v1/priest1_v1_1.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://c33mj3tfcpodw" path="res://player/player.gd" id="1_rkbax"]
-[ext_resource type="Texture2D" uid="uid://dpsy3xdwwy4aj" path="res://external_assets/placeholder/2d_dungeon_asset_pack/Character_animation/priests_idle/priest1/v1/priest1_v1_2.png" id="3_qjkh3"]
-[ext_resource type="Texture2D" uid="uid://coni0cphbp5ws" path="res://external_assets/placeholder/2d_dungeon_asset_pack/Character_animation/priests_idle/priest1/v1/priest1_v1_3.png" id="4_g6k8r"]
-[ext_resource type="Texture2D" uid="uid://c5sv2u5dkuni0" path="res://external_assets/placeholder/2d_dungeon_asset_pack/Character_animation/priests_idle/priest1/v1/priest1_v1_4.png" id="5_boad6"]
+[ext_resource type="Texture2D" uid="uid://degri4a55wrh6" path="res://external_assets/placeholder/2d_dungeon_asset_pack/Character_animation/priests_idle/priest1/v1/priest1_v1_2.png" id="3_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://7krrkmievmsn" path="res://external_assets/placeholder/2d_dungeon_asset_pack/Character_animation/priests_idle/priest1/v1/priest1_v1_3.png" id="4_g6k8r"]
+[ext_resource type="Texture2D" uid="uid://cd6mruu5ko5dd" path="res://external_assets/placeholder/2d_dungeon_asset_pack/Character_animation/priests_idle/priest1/v1/priest1_v1_4.png" id="5_boad6"]
 
 [sub_resource type="Gradient" id="Gradient_rkbax"]
 offsets = PackedFloat32Array(0)

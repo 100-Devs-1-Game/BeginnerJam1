@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://xxkghhl0bts5"]
+
+[ext_resource type="Script" uid="uid://ck5wlkmw13lhr" path="res://enemies/enemy.gd" id="1_07tka"]
+[ext_resource type="Texture2D" uid="uid://dcmlufb2cqd4j" path="res://external_assets/placeholder/2d_dungeon_asset_pack/Character_animation/monsters_idle/skeleton1/v2/skeleton_v2_1.png" id="1_a6vjd"]
+[ext_resource type="Texture2D" uid="uid://ddk0h0q7gj20a" path="res://external_assets/placeholder/2d_dungeon_asset_pack/Character_animation/monsters_idle/skeleton1/v2/skeleton_v2_2.png" id="2_07tka"]
+[ext_resource type="Texture2D" uid="uid://dickqogutbdhx" path="res://external_assets/placeholder/2d_dungeon_asset_pack/Character_animation/monsters_idle/skeleton1/v2/skeleton_v2_3.png" id="3_3t1x0"]
+[ext_resource type="Texture2D" uid="uid://dww4gkcmttvsv" path="res://external_assets/placeholder/2d_dungeon_asset_pack/Character_animation/monsters_idle/skeleton1/v2/skeleton_v2_4.png" id="4_epsnb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4w5fm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a6vjd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a6vjd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_07tka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3t1x0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_epsnb")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uba7a"]
+size = Vector2(32, 32)
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_07tka")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="AnimatedEnemySprite" type="AnimatedSprite2D" parent="Visuals"]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_4w5fm")
+animation = &"walking"
+frame = 1
+frame_progress = 0.19224466
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_uba7a")
