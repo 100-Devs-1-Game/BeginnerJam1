@@ -108,6 +108,13 @@ func force_move_player(direction: Vector2, amount: int) -> void:
 	_player_force_moved = true
 	_player_force_move_target = grid_position + ((direction * amount) as Vector2i)
 	_player_force_move_direction = direction
-	pass
 
+
+func teleport_player(new_global_position: Vector2) -> void:
+	grid_position = dungeon_tile_map.local_to_map(new_global_position)
+	_is_moving = true
+	var tween := create_tween()
+	tween.tween_property(self, "global_position", new_global_position, 0.15).set_ease(Tween.EASE_IN)
+	tween.tween_callback(self.set.bind("_is_moving", false))
+	
 #endregion
