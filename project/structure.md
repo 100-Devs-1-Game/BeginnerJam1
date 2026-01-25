@@ -1,4 +1,4 @@
-Here is the current folder structure, please refer to it if you're unsured of where to add a file.
+Here is the current folder structure, please refer to it if you're unsure of where to add a file.
 If no folder matches your needs, feel free to add a new entry following the current structure
 
 # Assets
@@ -7,12 +7,11 @@ If no folder matches your needs, feel free to add a new entry following the curr
 
 # Common
 - globals : For autoloads
-- utils : For static classes utility scripts
-- components : reusable components, each one should have a sub-folder with its scene and scripts
-- data : For Resources (.tres), each type should have a sub-folder
+- utils : For static utility class scripts
+- components : Reusable components, each one should have a subfolder with its scene and scripts
+- data : For Resources (.tres), each type should have a subfolder
 	- textures : AtlasTextures
 	- tileset : Tilesets
 
-# Specifics
-Various folders holding the necessaries files for a specific scene, exemples :
-- Player
+# Scenes
+Various folders holding the necessaries files for specifics scenes, such as player, enemies...
