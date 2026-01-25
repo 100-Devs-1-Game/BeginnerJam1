@@ -84,34 +84,34 @@ func _on_main_menu_button_hovered(marker_global_position: Vector2) -> void:
 		player.teleport_player(marker_global_position)
 
 
-func _on_player_returned_to_start_area(_a) -> void:
+func _on_player_returned_to_start_area(_a: Area2D) -> void:
 	if _exited_start_area_once:
 		_player_in_start_area = true
 		create_tween().tween_property(next_area_shadow, "modulate", Color(1, 1, 1, 1.0), 0.5)
 		_switch_camera(player.camera, locked_menu_camera)
 
 
-func _on_player_left_start_area(_a) -> void:
+func _on_player_left_start_area(_a: Area2D) -> void:
 	_player_in_start_area = false
 
 
-func _on_player_entered_start_game(_a) -> void:
+func _on_player_entered_start_game(_a: Area2D) -> void:
 	get_tree().change_scene_to_packed.call_deferred(TEST_LEVEL)
 
 
-func _on_player_entered_continue_game(_a) -> void:
+func _on_player_entered_continue_game(_a: Area2D) -> void:
 	print("continue_game")
 
 
-func _on_player_entered_settings(_a) -> void:
+func _on_player_entered_settings(_a: Area2D) -> void:
 	print("settings")
 
 
-func _on_player_entered_quit_game(_a) -> void:
+func _on_player_entered_quit_game(_a: Area2D) -> void:
 	get_tree().quit()
 
 
-func _on_player_leaving_start_area(_a) -> void:
+func _on_player_leaving_start_area(_a: Area2D) -> void:
 	if next_area_shadow.modulate == Color(0, 0, 0, 0):
 		return
 	_exited_start_area_once = true

@@ -7,7 +7,7 @@ signal moved_ended_at(location: Vector2i)
 
 #region constants
 const GRID_SIZE := 32  # TODO Move to a global defined constant
-const TURN_DURATION := 0.1  # TODO Move to a global defined constant
+const TURN_DURATION := 0.25  # TODO Move to a global defined constant
 #endregion
 
 #region class variables
@@ -90,7 +90,7 @@ func move_character() -> void:
 	tween.tween_property(self, "global_position", desired_global_pos, TURN_DURATION).set_ease(Tween.EASE_IN)
 	tween.tween_callback(moved_ended_at.emit.bind(grid_position))
 	tween.tween_callback(character_sprite.play.bind("default"))
-	tween.tween_callback(func(): _is_moving = false)  # TODO do in response to turnmanager instead
+	tween.tween_callback(func() -> void: _is_moving = false)  # TODO do in response to turnmanager instead
 
 #endregion
 

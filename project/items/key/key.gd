@@ -5,7 +5,7 @@ extends Node2D
 
 @onready var area: Area2D = $Area2D
 
-func _ready():
+func _ready() -> void:
 	area.area_entered.connect(_on_key_picked_up)
 
 
