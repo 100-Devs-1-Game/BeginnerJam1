@@ -1,6 +1,12 @@
-## Used in Globals as 'Map'
-class_name MapManager
+#class_name MapManager
 extends Node
+
+## Used in Globals as 'Map'
+## Allows other systems to use the current level's tilemap
+## Converts positions (global/map)
+## Retrieve tile's data
+## TODO: Can change tiles
+
 
 #region constants
 
