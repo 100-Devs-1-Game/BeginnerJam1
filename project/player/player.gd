@@ -42,22 +42,27 @@ func _process(_delta: float) -> void:
 func move_character() -> void:
 	if _is_moving:
 		return
-	var desired_movement: Vector2
-	desired_movement = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	if desired_movement.x != 0.0 and desired_movement.y != 0.0:
+		
+	var desired_movement := Input.get_vector("move_left", "move_right", "move_up", "move_down") as Vector2i
+	if desired_movement.x != 0 and desired_movement.y != 0:
 		return  # Rejects input if tryint to move diagonally
-	if desired_movement == Vector2.ZERO:
+	if desired_movement == Vector2i.ZERO:
 		return
 	if desired_movement.x:
 		character_sprite.flip_h = desired_movement.x < 0
 	_last_requested_movement_direction = desired_movement
 
-	# TODO Wall check
+	# Wall check
+	var target_grid_pos := grid_position + desired_movement
+	if not Map.is_walkable(target_grid_pos):
+		return
+	
 	# TODO Initiate Turn
 	_is_moving = true
-	grid_position += desired_movement as Vector2i
+	grid_position = target_grid_pos
+
 	# TODO Ice check and similar
-	var desired_global_pos: Vector2 = global_position + desired_movement * GRID_SIZE
+	var desired_global_pos: Vector2 = global_position + Vector2(desired_movement) * GRID_SIZE
 	character_sprite.play("walking")
 	var tween := create_tween()
 	tween.tween_property(self, "global_position", desired_global_pos, TURN_DURATION).set_ease(Tween.EASE_IN)

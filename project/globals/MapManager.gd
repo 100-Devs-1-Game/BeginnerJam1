@@ -10,7 +10,13 @@ extends Node
 
 #region constants
 
+# tile constants
 const TILE_SIZE := Vector2i(32, 32)
+# custom data constants
+# might be overkill?
+const WALKABLE_STRING := "walkable"
+#const ICE_STRING := "ice"
+#const CRUMBLING_STRING := "crumbling"
 
 #endregion
 
@@ -51,5 +57,7 @@ func get_custom_data(grid_position: Vector2i, data_name: String) -> Variant:
 
 #region specific methods
 
+func is_walkable(grid_position: Vector2i) -> bool:
+	return get_custom_data(grid_position, WALKABLE_STRING)
 
 #endregion

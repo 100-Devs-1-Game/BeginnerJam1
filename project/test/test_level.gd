@@ -8,6 +8,7 @@ extends Level
 
 #region constants
 
+# feel free to change those to do your own tests
 const TEST_MAP_CONVERSION := true
 const TEST_TILE_DATA := true
 const TILE_DATA_STRING := "test_data"
