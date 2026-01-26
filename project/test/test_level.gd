@@ -1,6 +1,7 @@
 class_name TestLevel
 extends Level
 
+
 ## Test Level script extending from base Level script
 ## can be used to test certain features in the Test Scene
 ## while the base Level class should contain feature that are common to all Levels
@@ -13,12 +14,21 @@ const TILE_DATA_STRING := "test_data"
 
 #endregion
 
-func _process(_delta: float) -> void:
+#region virtual methods
+
+func _ready() -> void:
+	super()
+
+func _process(delta: float) -> void:
+	super(delta)
 	if TEST_MAP_CONVERSION:
 		_test_map_conversion()
 	if TEST_TILE_DATA and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		_test_tile_data(TILE_DATA_STRING)
 	
+#endregion
+
+#region class methods
 
 ## Prints the mouse global position and its corresponding grid position
 func _test_map_conversion() -> void:
@@ -36,3 +46,5 @@ func _test_tile_data(data_name : String = "") -> void:
 	var custom_data : Variant = Map.get_custom_data(grid_pos, data_name)
 	
 	prints("Grid position", grid_pos, "->", data_name, "=", custom_data)
+
+#endregion
