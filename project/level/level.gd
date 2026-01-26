@@ -10,7 +10,7 @@ extends Node2D
 #region virtual methods
 
 func _ready() -> void:
-	assert(_tilemap, "Tilemap reference missing from the Level")
+	assert(_tilemap is TileMapLayer, "Tilemap reference missing from the Level")
 	Map._tilemap = _tilemap
 
 #endregion

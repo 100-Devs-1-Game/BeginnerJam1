@@ -8,12 +8,16 @@ extends Level
 #region constants
 
 const TEST_MAP_CONVERSION := true
+const TEST_TILE_DATA := true
+const TILE_DATA_STRING := "test_data"
 
 #endregion
 
 func _process(_delta: float) -> void:
 	if TEST_MAP_CONVERSION:
 		_test_map_conversion()
+	if TEST_TILE_DATA and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		_test_tile_data(TILE_DATA_STRING)
 	
 
 ## Prints the mouse global position and its corresponding grid position
@@ -25,8 +29,10 @@ func _test_map_conversion() -> void:
 	prints("Mouse position", mouse_pos, "-> Grid position", grid_pos, "-> Global position", global_pos)
 
 
-func _test_tile_data() -> void:
+## Prints the value of the custom data [param data_name] at the mouse's position
+func _test_tile_data(data_name : String = "") -> void:
 	var mouse_pos := get_global_mouse_position()
 	var grid_pos := Map.global_to_map(mouse_pos)
+	var custom_data : Variant = Map.get_custom_data(grid_pos, data_name)
 	
-	print("Mouse position ", mouse_pos, " -> Grid position ", grid_pos)
+	prints("Grid position", grid_pos, "->", data_name, "=", custom_data)

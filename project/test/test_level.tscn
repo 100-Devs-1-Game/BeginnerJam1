@@ -31,6 +31,7 @@ texture_region_size = Vector2i(32, 32)
 0:2/0 = 0
 1:2/0 = 0
 2:2/0 = 0
+2:2/0/custom_data_0 = "This is a test string"
 3:2/0 = 0
 4:2/0 = 0
 5:2/0 = 0
@@ -111,6 +112,8 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_ls30l"]
 tile_size = Vector2i(32, 32)
+custom_data_layer_0/name = "test_data"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_klfgi")
 
 [sub_resource type="Curve2D" id="Curve2D_piqwm"]
