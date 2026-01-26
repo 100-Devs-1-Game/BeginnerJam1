@@ -1,3 +1,4 @@
+class_name PauseMenu
 extends Node2D
 
 @onready var resume_button: Button = %ResumeButton
@@ -13,7 +14,7 @@ func _ready() -> void:
 	main_menu_button.connect("pressed", return_to_main_menu)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if resume_delay_timer.is_stopped():
 		if Input.is_action_just_pressed("pause_game"):
 			resume_game()

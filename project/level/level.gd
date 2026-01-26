@@ -1,16 +1,21 @@
 class_name Level
 extends Node2D
 
-#region export variables
+#region onready variables
 
-@export var _tilemap : TileMapLayer
+@onready var tile_map_layer: TileMapLayer = %TileMapLayer
+@onready var pause_menu: PauseMenu = %PauseMenu
 
 #endregion
 
 #region virtual methods
 
 func _ready() -> void:
-	assert(_tilemap is TileMapLayer, "Tilemap reference missing from the Level")
-	Map._tilemap = _tilemap
+	Map._tilemap = tile_map_layer
+
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("pause_game"):
+		pause_menu.pause_game()
 
 #endregion
