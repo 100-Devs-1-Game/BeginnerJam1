@@ -12,7 +12,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_loyqk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ddqrn"]
-size = Vector2(42, 342)
+size = Vector2(42, 192)
 
 [sub_resource type="Gradient" id="Gradient_ddqrn"]
 offsets = PackedFloat32Array(0, 0.05940594, 0.1980198, 0.29455444)
@@ -139,12 +139,11 @@ position = Vector2(144, 112)
 
 [node name="ContinueGameArea" type="Area2D" parent="World/Continue"]
 unique_name_in_owner = true
-position = Vector2(304, 176)
+position = Vector2(688, 176)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Continue/ContinueGameArea"]
-position = Vector2(384, 0)
 shape = SubResource("RectangleShape2D_loyqk")
 debug_color = Color(0.9647059, 0.105882354, 0.3882353, 0)
 
@@ -340,12 +339,13 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/FogOfWarShadow/ShadowHider"]
-position = Vector2(0, 128)
+position = Vector2(0, 112)
 shape = SubResource("RectangleShape2D_ddqrn")
 debug_color = Color(0.99215686, 0, 0.28235295, 0)
 
 [node name="NextAreaShadow" type="Sprite2D" parent="World/FogOfWarShadow"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(824, 143.99997)
 scale = Vector2(4.0624995, 2.25)
 texture = SubResource("GradientTexture2D_dr3nq")

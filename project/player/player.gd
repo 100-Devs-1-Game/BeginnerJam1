@@ -34,7 +34,6 @@ var _player_force_move_target := Vector2i.ZERO
 # TODO Temporary Tilemap direct access
 @onready var dungeon_tile_map: TileMapLayer
 
-
 #endregion
 
 
@@ -83,7 +82,6 @@ func move_character() -> void:
 	if _player_force_moved:
 		_player_force_moved = grid_position != _player_force_move_target
 	_ended_on_ice = tile_data and tile_data.get_custom_data("ICE")
-	  # global_position + desired_movement * GRID_SIZE
 	var desired_global_pos: Vector2 = dungeon_tile_map.map_to_local(dungeon_tile_map.local_to_map(global_position) + (desired_movement as Vector2i))
 	character_sprite.play("walking")
 	var tween := create_tween()
@@ -97,14 +95,15 @@ func move_character() -> void:
 
 #region class handlers
 
-func _on_area_entered(other_area: Area2D) -> void:
-	print("Encountered other area: %s" % other_area)
+func _on_area_entered(_other_area: Area2D) -> void:
+	#print("Encountered other area: %s" % other_area)
+	pass
 
 #endregion
 
 
 #region class methods
-func force_move_player(direction: Vector2, amount: int) -> void:
+func force_move_player(direction: Vector2, amount: int = 1) -> void:
 	_player_force_moved = true
 	_player_force_move_target = grid_position + ((direction * amount) as Vector2i)
 	_player_force_move_direction = direction
