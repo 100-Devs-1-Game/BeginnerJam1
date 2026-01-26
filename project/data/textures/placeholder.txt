@@ -1,3 +1,0 @@
-Placeholder so this folder gets pushed to git.
-
-DELETE THIS WHEN YOU IMPLEMENT SOMETHING IN THIS FOLDER

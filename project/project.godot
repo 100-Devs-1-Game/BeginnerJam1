@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Beginner Jam 1"
-run/main_scene="uid://clal44shu5gn"
+run/main_scene="uid://c2j6uhxqsv8fl"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://external_assets/icon.svg"
 
 [autoload]
 
@@ -69,6 +69,7 @@ pause_game={
 
 2d_physics/layer_1="DONT USE"
 2d_physics/layer_2="Player"
+2d_physics/layer_3="Pickups"
 
 [rendering]
 
