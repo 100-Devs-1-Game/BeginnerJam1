@@ -1,17 +1,18 @@
-[gd_scene load_steps=13 format=4 uid="uid://c2j6uhxqsv8fl"]
+[gd_scene load_steps=15 format=4 uid="uid://c2j6uhxqsv8fl"]
 
-[ext_resource type="Script" uid="uid://cw6pga7oqo2hn" path="res://scenes/menus/start/start_menu.gd" id="1_c0y51"]
+[ext_resource type="Script" uid="uid://cw6pga7oqo2hn" path="res://level/start_menu/start_menu.gd" id="1_c0y51"]
 [ext_resource type="TileSet" uid="uid://bkgx1a6xfjf5m" path="res://level/dungeon_tileset.tres" id="2_2pfh5"]
 [ext_resource type="PackedScene" uid="uid://csbdutbwqiure" path="res://player/player.tscn" id="3_n3gsq"]
 [ext_resource type="Theme" uid="uid://jjnxygu4uaaj" path="res://ui/themes/ingame_menu_theme.tres" id="4_hnq5y"]
 [ext_resource type="Theme" uid="uid://co10m3dqk5ebj" path="res://ui/themes/invisible_button_theme.tres" id="5_16xtl"]
 [ext_resource type="PackedScene" uid="uid://cx06fcdn4gawc" path="res://items/key/key.tscn" id="6_ohhdk"]
 [ext_resource type="Texture2D" uid="uid://og5o6f8utn7j" path="res://data/textures/door.tres" id="7_vihea"]
+[ext_resource type="PackedScene" uid="uid://xxkghhl0bts5" path="res://enemies/enemy.tscn" id="8_2pfh5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_loyqk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ddqrn"]
-size = Vector2(42, 342)
+size = Vector2(42, 192)
 
 [sub_resource type="Gradient" id="Gradient_ddqrn"]
 offsets = PackedFloat32Array(0, 0.05940594, 0.1980198, 0.29455444)
@@ -24,6 +25,12 @@ height = 512
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dr3nq"]
 size = Vector2(32, 224)
+
+[sub_resource type="Curve2D" id="Curve2D_2pfh5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 144, 80, 0, 0, 0, 0, 176, 80, 0, 0, 0, 0, 208, 80, 0, 0, 0, 0, 240, 80, 0, 0, 0, 0, 240, 112, 0, 0, 0, 0, 240, 144, 0, 0, 0, 0, 208, 144, 0, 0, 0, 0, 176, 144, 0, 0, 0, 0, 144, 144, 0, 0, 0, 0, 144, 112)
+}
+point_count = 10
 
 [node name="StartMenu" type="Node" node_paths=PackedStringArray("player")]
 script = ExtResource("1_c0y51")
@@ -132,12 +139,11 @@ position = Vector2(144, 112)
 
 [node name="ContinueGameArea" type="Area2D" parent="World/Continue"]
 unique_name_in_owner = true
-position = Vector2(304, 176)
+position = Vector2(688, 176)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Continue/ContinueGameArea"]
-position = Vector2(384, 0)
 shape = SubResource("RectangleShape2D_loyqk")
 debug_color = Color(0.9647059, 0.105882354, 0.3882353, 0)
 
@@ -333,12 +339,13 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/FogOfWarShadow/ShadowHider"]
-position = Vector2(0, 128)
+position = Vector2(0, 112)
 shape = SubResource("RectangleShape2D_ddqrn")
 debug_color = Color(0.99215686, 0, 0.28235295, 0)
 
 [node name="NextAreaShadow" type="Sprite2D" parent="World/FogOfWarShadow"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(824, 143.99997)
 scale = Vector2(4.0624995, 2.25)
 texture = SubResource("GradientTexture2D_dr3nq")
@@ -353,6 +360,15 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayerStartArea"]
 shape = SubResource("RectangleShape2D_dr3nq")
 debug_color = Color(0.8666667, 0.8901961, 0.31764707, 0)
+
+[node name="Enemy" parent="World" node_paths=PackedStringArray("patrol_path_node", "target_tilemap") instance=ExtResource("8_2pfh5")]
+position = Vector2(-48, 176)
+patrol_path_node = NodePath("EnemyPath")
+target_tilemap = NodePath("../TileMapLayer")
+
+[node name="EnemyPath" type="Path2D" parent="World/Enemy"]
+position = Vector2(-144, -80)
+curve = SubResource("Curve2D_2pfh5")
 
 [node name="TransitionCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
