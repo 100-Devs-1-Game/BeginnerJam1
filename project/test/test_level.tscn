@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://clal44shu5gn"]
 
 [ext_resource type="Script" uid="uid://dou152w73pp3o" path="res://test/test_level.gd" id="1_klfgi"]
-[ext_resource type="TileSet" uid="uid://bkgx1a6xfjf5m" path="res://level/dungeon_tileset.tres" id="2_ls30l"]
+[ext_resource type="TileSet" uid="uid://bkgx1a6xfjf5m" path="res://levels/dungeon_tileset.tres" id="2_ls30l"]
 [ext_resource type="PackedScene" uid="uid://csbdutbwqiure" path="res://player/player.tscn" id="3_ls30l"]
 [ext_resource type="PackedScene" uid="uid://xxkghhl0bts5" path="res://enemies/enemy.tscn" id="4_oxjuh"]
 [ext_resource type="PackedScene" uid="uid://bkacmu0that5w" path="res://ui/pause_menu/pause_menu.tscn" id="5_oxjuh"]

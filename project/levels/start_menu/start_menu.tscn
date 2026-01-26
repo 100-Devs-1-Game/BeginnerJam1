@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=4 uid="uid://c2j6uhxqsv8fl"]
 
-[ext_resource type="Script" uid="uid://cw6pga7oqo2hn" path="res://level/start_menu/start_menu.gd" id="1_c0y51"]
-[ext_resource type="TileSet" uid="uid://bkgx1a6xfjf5m" path="res://level/dungeon_tileset.tres" id="2_2pfh5"]
+[ext_resource type="Script" uid="uid://cw6pga7oqo2hn" path="res://levels/start_menu/start_menu.gd" id="1_c0y51"]
+[ext_resource type="TileSet" uid="uid://bkgx1a6xfjf5m" path="res://levels/dungeon_tileset.tres" id="2_2pfh5"]
 [ext_resource type="PackedScene" uid="uid://csbdutbwqiure" path="res://player/player.tscn" id="3_n3gsq"]
 [ext_resource type="Theme" uid="uid://jjnxygu4uaaj" path="res://ui/themes/ingame_menu_theme.tres" id="4_hnq5y"]
 [ext_resource type="Theme" uid="uid://co10m3dqk5ebj" path="res://ui/themes/invisible_button_theme.tres" id="5_16xtl"]
