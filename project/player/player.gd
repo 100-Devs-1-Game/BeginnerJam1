@@ -7,7 +7,7 @@ signal moved_ended_at(location: Vector2i)
 
 #region constants
 const GRID_SIZE := 32  # TODO Move to a global defined constant
-const TURN_DURATION := 0.25  # TODO Move to a global defined constant
+const TURN_DURATION := 0.15  # TODO Move to a global defined constant
 #endregion
 
 #region class variables

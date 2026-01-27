@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bdutivl4eovsj"
+path="res://.godot/imported/WHAT ARE YOU DOING IN MY SWAMP-.mp3-a807260de2311fe6c56e75ffd65b13b0.mp3str"
+
+[deps]
+
+source_file="res://external_assets/WHAT ARE YOU DOING IN MY SWAMP-.mp3"
+dest_files=["res://.godot/imported/WHAT ARE YOU DOING IN MY SWAMP-.mp3-a807260de2311fe6c56e75ffd65b13b0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
