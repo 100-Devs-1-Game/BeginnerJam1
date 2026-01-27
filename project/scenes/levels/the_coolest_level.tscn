@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://hoyjai2f2n5x"]
+
+[ext_resource type="Script" uid="uid://ca3tr65ahwjyx" path="res://scripts/level.gd" id="1_n56iq"]
+[ext_resource type="Script" uid="uid://dq5jifbceodtk" path="res://scripts/turn_manager.gd" id="2_58yx1"]
+[ext_resource type="PackedScene" uid="uid://cug2kg3one7h2" path="res://scenes/player.tscn" id="3_plium"]
+[ext_resource type="PackedScene" uid="uid://bfog256vyy4sw" path="res://scenes/ui/hud.tscn" id="4_u6f1d"]
+
+[node name="Level" type="Node"]
+script = ExtResource("1_n56iq")
+metadata/_custom_type_script = "uid://ca3tr65ahwjyx"
+
+[node name="TurnManager" type="Node" parent="."]
+script = ExtResource("2_58yx1")
+metadata/_custom_type_script = "uid://dq5jifbceodtk"
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="Scenery" type="Node2D" parent="."]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("3_plium")]
+unique_name_in_owner = true
+
+[node name="HUD" parent="." instance=ExtResource("4_u6f1d")]
