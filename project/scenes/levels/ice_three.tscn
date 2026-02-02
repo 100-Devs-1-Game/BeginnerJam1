@@ -15,11 +15,11 @@
 [ext_resource type="Script" uid="uid://b7xp1vrsqiqcp" path="res://scripts/ui/hints_after_failure.gd" id="13_jert7"]
 [ext_resource type="FontFile" uid="uid://3ea2t807hguu" path="res://assets/external/fonts/m5x7.ttf" id="14_6eugo"]
 
-[sub_resource type="Gradient" id="Gradient_wt17y"]
+[sub_resource type="Gradient" id="Gradient_f0p6x"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_i41rl"]
-gradient = SubResource("Gradient_wt17y")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bnx37"]
+gradient = SubResource("Gradient_f0p6x")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 1)
@@ -59,7 +59,7 @@ scale = Vector2(1.421875, 1.4375)
 color = Color(0.89, 0.30616003, 0.1602, 1)
 energy = 2.0
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_i41rl")
+texture = SubResource("GradientTexture2D_bnx37")
 script = ExtResource("5_n4uut")
 
 [node name="PointLight2D2" type="PointLight2D" parent="Lights"]
@@ -68,7 +68,7 @@ scale = Vector2(1.421875, 1.4375)
 color = Color(0.89, 0.30616003, 0.1602, 1)
 energy = 2.0
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_i41rl")
+texture = SubResource("GradientTexture2D_bnx37")
 script = ExtResource("5_n4uut")
 
 [node name="PointLight2D3" type="PointLight2D" parent="Lights"]
@@ -77,7 +77,7 @@ scale = Vector2(1.421875, 1.4375)
 color = Color(0.89, 0.30616003, 0.1602, 1)
 energy = 2.0
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_i41rl")
+texture = SubResource("GradientTexture2D_bnx37")
 script = ExtResource("5_n4uut")
 
 [node name="PointLight2D4" type="PointLight2D" parent="Lights"]
@@ -86,7 +86,7 @@ scale = Vector2(1.421875, 1.4375)
 color = Color(0.89, 0.30616003, 0.1602, 1)
 energy = 2.0
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_i41rl")
+texture = SubResource("GradientTexture2D_bnx37")
 script = ExtResource("5_n4uut")
 
 [node name="World" type="Node2D" parent="."]
@@ -124,7 +124,6 @@ position = Vector2(96, 96)
 [node name="HUD" parent="." instance=ExtResource("12_6hlts")]
 
 [node name="UI Hints" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("13_jert7")
 
 [node name="Control" type="Control" parent="UI Hints"]
