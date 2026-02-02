@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://da1ms4edocy34"]
+
+[ext_resource type="FontFile" uid="uid://3ea2t807hguu" path="res://assets/external/fonts/m5x7.ttf" id="1_2npuw"]
+
+[resource]
+Label/colors/font_color = Color(0.78, 0.52364, 0.51479995, 1)
+Label/fonts/font = ExtResource("1_2npuw")

@@ -49,7 +49,9 @@ func start_turn() -> void:
 	Events.turn_started.emit(_current_turn)
 	_actors_this_turn = _callbacks.size()
 	if _actors_this_turn == 0:
-		#push_warning("No actors on scene?")
+		push_warning("No actors on scene?")
+		await get_tree().create_timer(TurnManager.TURN_DURATION).timeout
+		Events.turn_completed.emit(_current_turn)
 		return
 	_done_counter = 0
 	for c:Callable in _callbacks:
