@@ -2,7 +2,7 @@ class_name Doorway
 extends Node2D
 
 
-enum Dir { NORTH, EAST, SOUTH, WEST }
+enum Dir { NORTH, EAST, SOUTH, WEST, NONE }
 
 @export var direction_to_door: Dir = Dir.NORTH
 
