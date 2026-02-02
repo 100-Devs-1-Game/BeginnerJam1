@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://buhxhcwcbg1hv"]
+
+[ext_resource type="Script" uid="uid://ca3tr65ahwjyx" path="res://scripts/level.gd" id="1_a381f"]
+[ext_resource type="Script" uid="uid://dq5jifbceodtk" path="res://scripts/turn_manager.gd" id="2_g1ai2"]
+[ext_resource type="TileSet" uid="uid://c20yitjo5k43l" path="res://tilesets/dungeon_tileset_with_customdata.tres" id="3_fwulr"]
+[ext_resource type="Script" uid="uid://df2p7210oc6yr" path="res://scripts/turn_on_lights.gd" id="4_i403b"]
+[ext_resource type="PackedScene" uid="uid://cug2kg3one7h2" path="res://scenes/player.tscn" id="9_mvorh"]
+[ext_resource type="Script" uid="uid://b7xp1vrsqiqcp" path="res://scripts/ui/hints_after_failure.gd" id="10_hulh5"]
+[ext_resource type="FontFile" uid="uid://3ea2t807hguu" path="res://assets/external/fonts/m5x7.ttf" id="11_yw11j"]
+[ext_resource type="PackedScene" uid="uid://bfog256vyy4sw" path="res://scenes/ui/hud.tscn" id="12_icp1j"]
+
+[sub_resource type="Theme" id="Theme_y8ti4"]
+Label/colors/font_color = Color(0.78, 0.52364, 0.51479995, 1)
+Label/fonts/font = ExtResource("11_yw11j")
+
+[node name="LevelOne" type="Node"]
+script = ExtResource("1_a381f")
+
+[node name="TurnManager" type="Node" parent="."]
+script = ExtResource("2_g1ai2")
+
+[node name="Scenery" type="Node2D" parent="."]
+
+[node name="DungeonBackground" type="TileMapLayer" parent="Scenery" groups=["dungeon", "tilemap"]]
+unique_name_in_owner = true
+tile_set = ExtResource("3_fwulr")
+
+[node name="Objects" type="TileMapLayer" parent="Scenery"]
+tile_set = ExtResource("3_fwulr")
+
+[node name="Lights" type="Node2D" parent="."]
+script = ExtResource("4_i403b")
+
+[node name="DarkWorld" type="DirectionalLight2D" parent="Lights"]
+energy = 0.71
+blend_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("9_mvorh")]
+unique_name_in_owner = true
+position = Vector2(16, 32)
+
+[node name="UI Hints" type="CanvasLayer" parent="."]
+script = ExtResource("10_hulh5")
+
+[node name="Control" type="Control" parent="UI Hints"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_y8ti4")
+
+[node name="Label" type="Label" parent="UI Hints/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.5
+offset_top = -11.5
+offset_right = 80.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLACEHOLDER LEVEL HINT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UI HUD" parent="." instance=ExtResource("12_icp1j")]
