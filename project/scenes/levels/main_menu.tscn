@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=4 uid="uid://c2ijb4mee3717"]
+
+[ext_resource type="PackedScene" uid="uid://buhxhcwcbg1hv" path="res://scenes/levels/level_template.tscn" id="1_fsby3"]
+
+[node name="LevelOne" instance=ExtResource("1_fsby3")]
+
+[node name="DungeonBackground" parent="Scenery" index="0"]
+tile_map_data = PackedByteArray("AAABAAIAAAADAAcAAAACAAIAAAACAAYAAAADAAIAAAACAAYAAAAEAAIAAAACAAYAAAAFAAIAAAACAAYAAAAGAAIAAAACAAYAAAAHAAIAAAACAAYAAAAIAAIAAAACAAYAAAAJAAIAAAACAAYAAAAKAAIAAAACAAYAAAAAAAIAAAACAAYAAAD//wIAAAACAAYAAAD+/wIAAAACAAYAAAD9/wIAAAACAAYAAAD8/wIAAAACAAYAAAD7/wIAAAACAAYAAAD6/wIAAAACAAYAAAD5/wIAAAACAAYAAAD4/wIAAAACAAYAAAA=")
