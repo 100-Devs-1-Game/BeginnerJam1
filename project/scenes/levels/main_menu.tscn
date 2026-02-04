@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://c070ql5t38pj5"]
+[gd_scene load_steps=27 format=4 uid="uid://c070ql5t38pj5"]
 
 [ext_resource type="Script" uid="uid://ca3tr65ahwjyx" path="res://scripts/level.gd" id="1_sn5u3"]
 [ext_resource type="Script" uid="uid://dq5jifbceodtk" path="res://scripts/turn_manager.gd" id="2_cn35j"]
@@ -11,6 +11,7 @@
 [ext_resource type="FontFile" uid="uid://3ea2t807hguu" path="res://assets/external/fonts/m5x7.ttf" id="7_k0nyb"]
 [ext_resource type="Texture2D" uid="uid://bjobx1detsbol" path="res://assets/external/character/atlas/Dungeon_Character.png" id="8_k0nyb"]
 [ext_resource type="PackedScene" uid="uid://bfog256vyy4sw" path="res://scenes/ui/hud.tscn" id="8_wgqco"]
+[ext_resource type="Script" uid="uid://dq4t06d4yr3jp" path="res://scripts/ui/level_display.gd" id="12_k0nyb"]
 [ext_resource type="Theme" uid="uid://da1ms4edocy34" path="res://scenes/ui/ui_hint_theme.tres" id="12_ohdsy"]
 [ext_resource type="Texture2D" uid="uid://c45quxy6w8g3m" path="res://assets/external/coin.png" id="13_fwnpy"]
 
@@ -330,6 +331,8 @@ _data = {
 Label/colors/font_color = Color(0.78, 0.52364, 0.51479995, 1)
 Label/fonts/font = ExtResource("7_k0nyb")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fwnpy"]
+
 [node name="LevelOne" type="Node"]
 script = ExtResource("1_sn5u3")
 
@@ -449,6 +452,7 @@ vertical_alignment = 1
 visible = false
 
 [node name="LevelDisplay" type="CanvasLayer" parent="."]
+script = ExtResource("12_k0nyb")
 
 [node name="Control" type="Control" parent="LevelDisplay"]
 layout_mode = 3
@@ -462,31 +466,81 @@ grow_vertical = 0
 theme = ExtResource("12_ohdsy")
 
 [node name="Panel" type="Panel" parent="LevelDisplay/Control"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -35.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Label" type="Label" parent="LevelDisplay/Control"]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 6.0
-offset_right = 80.0
-offset_bottom = 19.0
-text = "LEVEL NAME"
-
-[node name="RatingDisplay" type="HBoxContainer" parent="LevelDisplay/Control"]
-layout_mode = 0
-offset_left = 89.0
-offset_right = 129.0
+offset_right = 320.0
 offset_bottom = 35.0
 
-[node name="TextureRect" type="TextureRect" parent="LevelDisplay/Control/RatingDisplay"]
+[node name="MarginContainer" type="MarginContainer" parent="LevelDisplay/Control"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 35.0
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="LevelDisplay/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelDisplay/Control/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Panel2" type="Panel" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fwnpy")
+
+[node name="Label" type="Label" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Level Name"
+
+[node name="Panel3" type="Panel" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fwnpy")
+
+[node name="RatingDisplay" type="MarginContainer" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="LevelDisplay/Control/MarginContainer/HBoxContainer/RatingDisplay"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelDisplay/Control/MarginContainer/HBoxContainer/RatingDisplay/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="LevelDisplay/Control/MarginContainer/HBoxContainer/RatingDisplay/PanelContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("13_fwnpy")
-expand_mode = 2
 stretch_mode = 5
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="LevelDisplay/Control/MarginContainer/HBoxContainer/RatingDisplay/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_fwnpy")
+stretch_mode = 5
+flip_h = true
+
+[node name="TextureRect3" type="TextureRect" parent="LevelDisplay/Control/MarginContainer/HBoxContainer/RatingDisplay/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_fwnpy")
+stretch_mode = 5
+flip_h = true
+
+[node name="Panel" type="Panel" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fwnpy")
+
+[node name="Button" type="Button" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8894804, 0.60969263, 1.1551381e-06, 1)
+theme_override_fonts/font = ExtResource("7_k0nyb")
+text = "Play"
