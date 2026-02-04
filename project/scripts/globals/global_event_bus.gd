@@ -8,6 +8,9 @@ extends Node
 signal game_wun
 signal game_lost
 
+# Main Menu
+signal level_selected(level_info: Dictionary)
+
 # Map
 signal level_completed
 signal level_changed
