@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=4 uid="uid://c070ql5t38pj5"]
+[gd_scene load_steps=28 format=4 uid="uid://c070ql5t38pj5"]
 
 [ext_resource type="Script" uid="uid://ca3tr65ahwjyx" path="res://scripts/level.gd" id="1_sn5u3"]
 [ext_resource type="Script" uid="uid://dq5jifbceodtk" path="res://scripts/turn_manager.gd" id="2_cn35j"]
 [ext_resource type="TileSet" uid="uid://c20yitjo5k43l" path="res://tilesets/dungeon_tileset_with_customdata.tres" id="3_wko7x"]
 [ext_resource type="Script" uid="uid://df2p7210oc6yr" path="res://scripts/turn_on_lights.gd" id="4_pwqr4"]
 [ext_resource type="Script" uid="uid://c61024aa565n3" path="res://scripts/player.gd" id="5_pwqr4"]
+[ext_resource type="PackedScene" uid="uid://bpu4rkmys5xj0" path="res://scenes/objects/level_area.tscn" id="5_wgqco"]
 [ext_resource type="Script" uid="uid://b7xp1vrsqiqcp" path="res://scripts/ui/hints_after_failure.gd" id="6_fwnpy"]
 [ext_resource type="Script" uid="uid://bvpmuuqij5vl2" path="res://scripts/items/flicking_light.gd" id="6_ohdsy"]
 [ext_resource type="Script" uid="uid://cxvfuxldpik54" path="res://scripts/player_camera.gd" id="7_fwnpy"]
@@ -359,6 +360,9 @@ metadata/_edit_lock_ = true
 
 [node name="World" type="Node2D" parent="."]
 
+[node name="LevelArea" parent="World" instance=ExtResource("5_wgqco")]
+position = Vector2(176, 16)
+
 [node name="Player" type="Node2D" parent="." groups=["player"]]
 unique_name_in_owner = true
 position = Vector2(16, 32)
@@ -492,7 +496,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fwnpy")
 
-[node name="Label" type="Label" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
+[node name="LevelName" type="Label" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Level Name"
@@ -539,7 +543,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fwnpy")
 
-[node name="Button" type="Button" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
+[node name="PlayButton" type="Button" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8894804, 0.60969263, 1.1551381e-06, 1)
 theme_override_fonts/font = ExtResource("7_k0nyb")
