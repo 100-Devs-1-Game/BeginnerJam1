@@ -2,7 +2,7 @@ extends Node
 
 @export var all_levels: Array[PackedScene]
 
-const LEVEL_ONE = preload("uid://c0rjmcisgel26")
+#const LEVEL_ONE = preload("uid://c0rjmcisgel26")
 const LEVEL_TWO = preload("uid://defnhonhw5r5g")
 const LEVEL_THREE = preload("uid://bmo5w2c86foo1")
 const LEVEL_FOUR = preload("uid://ch21n7wdbhsr5")
@@ -51,7 +51,7 @@ func new_game() -> void:
 		DANCE_MACABRE,
 		ICE_THREE,
 		#TEST_ONE,
-		LEVEL_ONE,
+		#LEVEL_ONE,
 		LEVEL_FOUR,
 		#LEVEL_TWO,
 		LEVEL_THREE,
