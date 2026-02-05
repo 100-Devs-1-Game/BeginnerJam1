@@ -22,7 +22,6 @@ func _ready() -> void:
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	print(get_tree().current_scene.name)
 	if event.is_action_pressed("ui_accept") and get_tree().current_scene != preload("uid://c070ql5t38pj5"):
 		GameManager.restart_level()
 
