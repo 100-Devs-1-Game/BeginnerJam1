@@ -13,12 +13,18 @@ func _ready() -> void:
 
 func _on_level_selected(info_dict: Dictionary) -> void:
 	show()
-	play_button.grab_focus()
+	if info_dict["scene"] == null:
+		play_button.hide()
+		rating_holder.hide()
+	else:
+		play_button.show()
+		rating_holder.show()
+		play_button.grab_focus()
+		selected_level = info_dict["scene"]
 	level_name.text = info_dict["display_name"]
-	selected_level = info_dict["level_scene"]
 	
 func _on_play_button_pressed() -> void:
 	if selected_level:
-		get_tree().change_scene_to_packed(selected_level)
+		GameManager.play_level(selected_level)
 	else:
 		push_warning('No level loaded!')
