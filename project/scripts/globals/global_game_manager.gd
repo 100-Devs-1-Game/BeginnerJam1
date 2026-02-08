@@ -128,7 +128,16 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		get_tree().quit()
 
 
+func play_level(scene: PackedScene) -> void:
+	get_tree().call_deferred("change_scene_to_packed", scene)
+	if not get_tree().scene_changed.is_connected(_on_scene_changed):
+			get_tree().scene_changed.connect(_on_scene_changed)
+
+
 func _on_level_completed() -> void:
+	print("end of level menu displays here")
+	
+func next_level() -> void:
 	if levels.size() > 0:
 		_current_level = levels.pop_front()
 		if _current_level == null:
@@ -139,7 +148,6 @@ func _on_level_completed() -> void:
 			get_tree().scene_changed.connect(_on_scene_changed)
 	else:
 		Events.game_wun.emit()
-
 
 ## Force restart of the current level
 func restart_level() -> void:
