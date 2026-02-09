@@ -10,6 +10,7 @@ signal game_lost
 
 # Main Menu
 signal level_selected(level_info: Dictionary)
+signal level_deselected()
 
 # Map
 signal level_completed
