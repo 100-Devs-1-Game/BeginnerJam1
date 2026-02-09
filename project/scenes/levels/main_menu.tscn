@@ -370,31 +370,30 @@ display_name = "Straightforward"
 
 [node name="LevelArea2" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
 position = Vector2(208, 16)
-display_name = "Not Straightforward"
+display_name = "Cold Bones"
 
 [node name="LevelArea3" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
 position = Vector2(240, 16)
-display_name = "Nice-y"
+display_name = "Sandy Bridges"
 
 [node name="LevelArea4" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
 position = Vector2(272, 16)
-display_name = "Nice-ier"
+display_name = "Four Red Floors"
 
 [node name="LevelArea5" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
 position = Vector2(304, 16)
-display_name = "Bridge"
+display_name = "Not Straightforward"
 
 [node name="LevelArea6" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
 position = Vector2(176, 48)
-display_name = "Poker"
+display_name = "Skele-rink"
 
 [node name="LevelArea7" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
 position = Vector2(208, 48)
-display_name = "Skele-rink"
+display_name = "Dance Macabre"
 
 [node name="LevelArea8" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
 position = Vector2(240, 48)
-display_name = "Dance Macabre"
 
 [node name="LevelArea9" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
 position = Vector2(272, 48)

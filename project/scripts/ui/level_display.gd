@@ -25,6 +25,6 @@ func _on_level_selected(info_dict: Dictionary) -> void:
 	
 func _on_play_button_pressed() -> void:
 	if selected_level:
-		GameManager.play_level(selected_level)
+		GameManager.play_level()
 	else:
 		push_warning('No level loaded!')

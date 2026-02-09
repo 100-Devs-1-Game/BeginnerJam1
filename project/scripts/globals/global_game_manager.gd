@@ -1,14 +1,14 @@
 extends Node
 
-const LEVEL_ONE = preload("uid://c0rjmcisgel26")
-const LEVEL_TWO = preload("uid://defnhonhw5r5g")
-const LEVEL_THREE = preload("uid://bmo5w2c86foo1")
-const LEVEL_FOUR = preload("uid://ch21n7wdbhsr5")
-const TEST_ONE = preload("uid://ieqnodo2xffy")
-const ICE_TWO = preload("uid://123fvdy454jp")
-const ICE_THREE = preload("uid://cmwp6varoqepk")
-const COOLEST_LEVEL = preload("uid://hoyjai2f2n5x")
-const DANCE_MACABRE = preload("uid://dpfmwpouve6i8")
+const MAIN_MENU = preload("uid://c070ql5t38pj5")
+
+const LEVEL_ONE = preload("uid://c0rjmcisgel26") # Straightforward
+const LEVEL_THREE = preload("uid://bmo5w2c86foo1") # Four Red Floors
+const LEVEL_FOUR = preload("uid://ch21n7wdbhsr5") # Not Straightforward
+const ICE_TWO = preload("uid://123fvdy454jp") # Sandy Bridge
+const ICE_THREE = preload("uid://cmwp6varoqepk") # Cold Bones
+const COOLEST_LEVEL = preload("uid://hoyjai2f2n5x") # Skele-rink
+const DANCE_MACABRE = preload("uid://dpfmwpouve6i8") # Dance Macabre
 
 const MAX_SANDBAGS = 3
 const AUTOMATIC_RESTART = false
@@ -34,7 +34,7 @@ var bridge: bool = false
 
 
 func _ready() -> void:
-	Events.level_completed.connect(_on_level_completed)
+	Events.level_selected.connect(func(d): _current_level = d["scene"])
 	Events.key_picked_up.connect(func(): has_key = true)
 	Events.key_used.connect(func(): has_key = false)
 
@@ -44,20 +44,13 @@ func _ready() -> void:
 	
 	levels = [
 		LEVEL_ONE, # straightforward
-		LEVEL_TWO,
-		ICE_TWO,
-		ICE_THREE,
-		#TEST_ONE,
-		LEVEL_THREE,
-		LEVEL_FOUR,
+		ICE_THREE, # Cold Bones
+		ICE_TWO, # Sandy Bridge
+		LEVEL_THREE, # Four red floors
+		LEVEL_FOUR, # Not Straightforward
 		COOLEST_LEVEL, # skele-rink
 		DANCE_MACABRE, # dance macabre
 	]
-	
-## Start a new game
-func new_game() -> void:
-	
-	_on_level_completed()
 
 
 ## Attempt to open door, checks if players has picked up key
@@ -128,26 +121,28 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		get_tree().quit()
 
 
-func play_level(scene: PackedScene) -> void:
-	get_tree().call_deferred("change_scene_to_packed", scene)
+func play_level() -> void:
+	get_tree().call_deferred("change_scene_to_packed", _current_level)
 	if not get_tree().scene_changed.is_connected(_on_scene_changed):
 			get_tree().scene_changed.connect(_on_scene_changed)
 
 
-func _on_level_completed() -> void:
-	print("end of level menu displays here")
-	
 func next_level() -> void:
+	if _current_level == null:
+		push_error("NO LEVEL??")
+		return
+		
+	var index := levels.find(_current_level)
+
+	if levels[index] == levels[-1]:
+		push_warning("LAST LEVEL, HIDE NEXT BUTTON!")
+		_current_level = MAIN_MENU
+	else:
+		_current_level = levels[index + 1]
+	play_level()
 	if levels.size() > 0:
 		_current_level = levels.pop_front()
-		if _current_level == null:
-			push_error("NO LEVEL??")
-			return
-		get_tree().call_deferred("change_scene_to_packed", _current_level)
-		if not get_tree().scene_changed.is_connected(_on_scene_changed):
-			get_tree().scene_changed.connect(_on_scene_changed)
-	else:
-		Events.game_wun.emit()
+
 
 ## Force restart of the current level
 func restart_level() -> void:
