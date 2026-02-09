@@ -41,6 +41,7 @@ func _on_player_left_square(location: Vector2i) -> void:
 		return
 	if location in _active_decays:
 		return
+
 	_active_decays.append(location)
 	var decay: Decay = DECAY_SCENE.instantiate() as Decay
 	var global_pos = Map.map_to_global(location)

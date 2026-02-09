@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://c0rjmcisgel26"]
+[gd_scene load_steps=21 format=4 uid="uid://c0rjmcisgel26"]
 
 [ext_resource type="Script" uid="uid://ca3tr65ahwjyx" path="res://scripts/level.gd" id="1_8ri5e"]
 [ext_resource type="Script" uid="uid://dq5jifbceodtk" path="res://scripts/turn_manager.gd" id="2_1057k"]
@@ -12,6 +12,9 @@
 [ext_resource type="Script" uid="uid://b7xp1vrsqiqcp" path="res://scripts/ui/hints_after_failure.gd" id="10_1057k"]
 [ext_resource type="FontFile" uid="uid://3ea2t807hguu" path="res://assets/external/fonts/m5x7.ttf" id="10_tikvp"]
 [ext_resource type="PackedScene" uid="uid://bfog256vyy4sw" path="res://scenes/ui/hud.tscn" id="11_x3kkr"]
+[ext_resource type="Script" uid="uid://bltq56lharn3k" path="res://scripts/ui/finished_level_ui.gd" id="13_6t0u7"]
+[ext_resource type="Theme" uid="uid://da1ms4edocy34" path="res://scenes/ui/ui_hint_theme.tres" id="13_cxxkw"]
+[ext_resource type="Texture2D" uid="uid://c45quxy6w8g3m" path="res://assets/external/coin.png" id="14_ajekx"]
 
 [sub_resource type="Gradient" id="Gradient_wt17y"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -25,6 +28,12 @@ fill_to = Vector2(0.5, 1)
 [sub_resource type="Theme" id="Theme_y8ti4"]
 Label/colors/font_color = Color(0.78, 0.52364, 0.51479995, 1)
 Label/fonts/font = ExtResource("10_tikvp")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajekx"]
+bg_color = Color(0, 0, 0, 0.827451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxxkw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="LevelOne" type="Node"]
 script = ExtResource("1_8ri5e")
@@ -132,3 +141,100 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="UI HUD" parent="." instance=ExtResource("11_x3kkr")]
+
+[node name="LevelUI" type="CanvasLayer" parent="."]
+script = ExtResource("13_6t0u7")
+
+[node name="PanelContainer" type="PanelContainer" parent="LevelUI"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("13_cxxkw")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ajekx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelUI/PanelContainer"]
+layout_mode = 2
+
+[node name="Panel4" type="Panel" parent="LevelUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
+theme_override_styles/panel = SubResource("StyleBoxFlat_cxxkw")
+
+[node name="Label" type="Label" parent="LevelUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Well Done"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="LevelUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
+theme_override_styles/panel = SubResource("StyleBoxFlat_cxxkw")
+
+[node name="RatingDisplay" type="HBoxContainer" parent="LevelUI/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="LevelUI/PanelContainer/VBoxContainer/RatingDisplay"]
+layout_mode = 2
+texture = ExtResource("14_ajekx")
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="LevelUI/PanelContainer/VBoxContainer/RatingDisplay"]
+layout_mode = 2
+texture = ExtResource("14_ajekx")
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="LevelUI/PanelContainer/VBoxContainer/RatingDisplay"]
+layout_mode = 2
+texture = ExtResource("14_ajekx")
+stretch_mode = 5
+
+[node name="Panel2" type="Panel" parent="LevelUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.65
+theme_override_styles/panel = SubResource("StyleBoxFlat_cxxkw")
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelUI/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="NextLevel" type="Button" parent="LevelUI/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.86783844, 0.3730341, 1)
+theme_override_fonts/font = ExtResource("10_tikvp")
+text = "Next Level"
+
+[node name="PlayAgain" type="Button" parent="LevelUI/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.86783844, 0.3730341, 1)
+theme_override_fonts/font = ExtResource("10_tikvp")
+text = "Play Again"
+
+[node name="LevelSelect" type="Button" parent="LevelUI/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.86783844, 0.3730341, 1)
+theme_override_fonts/font = ExtResource("10_tikvp")
+text = "Level Select"
+
+[node name="Panel3" type="Panel" parent="LevelUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cxxkw")
