@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bmo5w2c86foo1"]
+[gd_scene load_steps=14 format=4 uid="uid://bmo5w2c86foo1"]
 
 [ext_resource type="Script" uid="uid://ca3tr65ahwjyx" path="res://scripts/level.gd" id="1_l3r28"]
 [ext_resource type="Script" uid="uid://dq5jifbceodtk" path="res://scripts/turn_manager.gd" id="2_d2xrl"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ctcwh4vwupgl1" path="res://scenes/monster.tscn" id="7_pcq6o"]
 [ext_resource type="PackedScene" uid="uid://cug2kg3one7h2" path="res://scenes/player.tscn" id="8_qulb1"]
 [ext_resource type="PackedScene" uid="uid://bfog256vyy4sw" path="res://scenes/ui/hud.tscn" id="10_jbu4w"]
+[ext_resource type="PackedScene" uid="uid://k688shjetnt" path="res://scenes/ui/level_ui.tscn" id="11_s458d"]
 
 [sub_resource type="Gradient" id="Gradient_wt17y"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -174,3 +175,5 @@ position = Vector2(16, 16)
 grid_position = Vector2i(11, 5)
 
 [node name="HUD" parent="." instance=ExtResource("10_jbu4w")]
+
+[node name="LevelUI" parent="." instance=ExtResource("11_s458d")]

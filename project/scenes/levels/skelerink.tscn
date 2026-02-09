@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://hoyjai2f2n5x"]
+[gd_scene load_steps=17 format=4 uid="uid://hoyjai2f2n5x"]
 
 [ext_resource type="Script" uid="uid://ca3tr65ahwjyx" path="res://scripts/level.gd" id="1_n56iq"]
 [ext_resource type="Script" uid="uid://dq5jifbceodtk" path="res://scripts/turn_manager.gd" id="2_58yx1"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://vq7rf4ypincf" path="res://scenes/objects/key.tscn" id="9_u1dyg"]
 [ext_resource type="PackedScene" uid="uid://cnhkoetwavary" path="res://scenes/objects/bridge.tscn" id="10_u1dyg"]
 [ext_resource type="PackedScene" uid="uid://gd8dbjwqf00" path="res://scenes/objects/doorway.tscn" id="11_4ehew"]
+[ext_resource type="PackedScene" uid="uid://k688shjetnt" path="res://scenes/ui/level_ui.tscn" id="16_umy6k"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_n56iq")
@@ -198,3 +199,5 @@ grow_vertical = 2
 text = "Expecting help? Tough luck."
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LevelUI" parent="." instance=ExtResource("16_umy6k")]

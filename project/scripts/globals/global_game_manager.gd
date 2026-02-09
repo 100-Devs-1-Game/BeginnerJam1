@@ -140,9 +140,7 @@ func next_level() -> void:
 	else:
 		_current_level = levels[index + 1]
 	play_level()
-	if levels.size() > 0:
-		_current_level = levels.pop_front()
-
+	
 
 ## Force restart of the current level
 func restart_level() -> void:

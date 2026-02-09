@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cmwp6varoqepk"]
+[gd_scene load_steps=19 format=4 uid="uid://cmwp6varoqepk"]
 
 [ext_resource type="Script" uid="uid://ca3tr65ahwjyx" path="res://scripts/level.gd" id="1_f0p6x"]
 [ext_resource type="Script" uid="uid://dq5jifbceodtk" path="res://scripts/turn_manager.gd" id="2_bnx37"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bfog256vyy4sw" path="res://scenes/ui/hud.tscn" id="12_6hlts"]
 [ext_resource type="Script" uid="uid://b7xp1vrsqiqcp" path="res://scripts/ui/hints_after_failure.gd" id="13_jert7"]
 [ext_resource type="FontFile" uid="uid://3ea2t807hguu" path="res://assets/external/fonts/m5x7.ttf" id="14_6eugo"]
+[ext_resource type="PackedScene" uid="uid://k688shjetnt" path="res://scenes/ui/level_ui.tscn" id="15_bnx37"]
 
 [sub_resource type="Gradient" id="Gradient_f0p6x"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -165,3 +166,5 @@ grow_vertical = 2
 text = "Sand to stop, bridge to get back!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LevelUI" parent="." instance=ExtResource("15_bnx37")]

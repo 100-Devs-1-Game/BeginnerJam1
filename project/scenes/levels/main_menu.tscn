@@ -374,7 +374,7 @@ display_name = "Cold Bones"
 
 [node name="LevelArea3" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
 position = Vector2(240, 16)
-display_name = "Sandy Bridges"
+display_name = "Sandy Bridge"
 
 [node name="LevelArea4" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
 position = Vector2(272, 16)
