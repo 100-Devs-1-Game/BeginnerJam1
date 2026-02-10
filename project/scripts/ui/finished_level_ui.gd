@@ -7,7 +7,7 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Events.level_completed.connect(show)
+	Events.level_completed.connect(func(): show(); next_level_button.grab_focus())
 	next_level_button.pressed.connect(_on_next_level_button_pressed)
 	play_again_button.pressed.connect(_on_play_again_button_pressed)
 	level_select_button.pressed.connect(_on_level_select_button_pressed)

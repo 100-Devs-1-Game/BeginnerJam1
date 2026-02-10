@@ -7,6 +7,7 @@ const DECAY_SCENE = preload("uid://gfv2617xrpoh")
 @export var map_offset: Vector2i = Vector2i(5, 2)
 
 var _active_decays: Array[Vector2i] = []
+var level_completed := false
 
 @onready var dungeon: TileMapLayer = %DungeonBackground
 @onready var player: Player = %Player
@@ -18,11 +19,12 @@ func _ready() -> void:
 	assert(player is Player)
 	assert(world is Node2D)
 	Events.play_left_square.connect(_on_player_left_square)
+	Events.level_completed.connect(func(): level_completed = true)
 	player.move_ended.connect(_on_player_entered_square)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept") and not level_completed:
 		GameManager.restart_level()
 
 

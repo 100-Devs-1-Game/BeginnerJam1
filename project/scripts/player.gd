@@ -11,6 +11,7 @@ var _paused := false
 var _is_moving := false
 var _ended_on_ice := false
 var _last_moved_direction := Vector2.ZERO
+var _exit_reached := false
 
 var level_area: Node2D = null
 
@@ -122,6 +123,8 @@ func _on_player_area_entered(other: Area2D) -> void:
 		other_parent.pick_up()
 	elif other_parent is Doorway:
 		_paused = other_parent.open()
+		if _paused:
+			_exit_reached = true
 	elif other_parent is Monster:
 		die()
 	elif other_parent is LevelArea:

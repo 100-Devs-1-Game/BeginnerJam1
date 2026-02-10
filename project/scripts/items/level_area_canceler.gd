@@ -1,5 +1,5 @@
 extends Node2D
-	
+
 func _ready() -> void:
 	$Area2D.area_entered.connect(_on_area_entered)
 
