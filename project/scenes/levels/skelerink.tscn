@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://hoyjai2f2n5x"]
+[gd_scene load_steps=17 format=4 uid="uid://hoyjai2f2n5x"]
 
 [ext_resource type="Script" uid="uid://ca3tr65ahwjyx" path="res://scripts/level.gd" id="1_n56iq"]
 [ext_resource type="Script" uid="uid://dq5jifbceodtk" path="res://scripts/turn_manager.gd" id="2_58yx1"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://vq7rf4ypincf" path="res://scenes/objects/key.tscn" id="9_u1dyg"]
 [ext_resource type="PackedScene" uid="uid://cnhkoetwavary" path="res://scenes/objects/bridge.tscn" id="10_u1dyg"]
 [ext_resource type="PackedScene" uid="uid://gd8dbjwqf00" path="res://scenes/objects/doorway.tscn" id="11_4ehew"]
+[ext_resource type="PackedScene" uid="uid://k688shjetnt" path="res://scenes/ui/level_ui.tscn" id="16_umy6k"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_n56iq")
@@ -32,7 +33,7 @@ tile_map_data = PackedByteArray("AAABAAAAAAACAAYAAAACAAAAAAACAAYAAAD//wAAAAACAAY
 tile_set = ExtResource("3_u6f1d")
 
 [node name="Objects" type="TileMapLayer" parent="Scenery"]
-tile_map_data = PackedByteArray("AAD6//z/AQABAAkAAAD6/wEAAQABAAkAAAD6/wUAAQABAAkAAAAGAPz/AQABAAkAABAGAAUAAQABAAkAABD8//n/AQAAAAkAAAACAPn/AQAAAAkAAAAGAAEAAQABAAkAABABAAQAAQADAAkAAAA=")
+tile_map_data = PackedByteArray("AAD6//z/AQABAAkAAAD6/wEAAQABAAkAAAD6/wUAAQABAAkAAAAGAPz/AQABAAkAABAGAAUAAQABAAkAABD8//n/AQAAAAkAAAACAPn/AQAAAAkAAAAGAAEAAQABAAkAABD+//z/AQADAAkAAAACAPz/AQADAAkAAAD+/wUAAQADAAkAAAACAAUAAQADAAkAAAD+////AQADAAkAAAACAP//AQADAAkAAAD+/wIAAQADAAkAAAACAAIAAQADAAkAAAA=")
 tile_set = ExtResource("5_fao6r")
 
 [node name="Lights" type="Node2D" parent="."]
@@ -67,7 +68,28 @@ position = Vector2(-96.00001, 88)
 position = Vector2(111.99999, 88)
 
 [node name="PointLight2D9" parent="Lights" instance=ExtResource("3_w8wla")]
-position = Vector2(24, 72)
+position = Vector2(-24, -56.000004)
+
+[node name="PointLight2D10" parent="Lights" instance=ExtResource("3_w8wla")]
+position = Vector2(40, -56)
+
+[node name="PointLight2D11" parent="Lights" instance=ExtResource("3_w8wla")]
+position = Vector2(-24.000002, -8)
+
+[node name="PointLight2D12" parent="Lights" instance=ExtResource("3_w8wla")]
+position = Vector2(40, -8)
+
+[node name="PointLight2D13" parent="Lights" instance=ExtResource("3_w8wla")]
+position = Vector2(-24, 40)
+
+[node name="PointLight2D14" parent="Lights" instance=ExtResource("3_w8wla")]
+position = Vector2(40, 40)
+
+[node name="PointLight2D15" parent="Lights" instance=ExtResource("3_w8wla")]
+position = Vector2(-24, 88)
+
+[node name="PointLight2D16" parent="Lights" instance=ExtResource("3_w8wla")]
+position = Vector2(40, 88)
 
 [node name="World" type="Node2D" parent="."]
 
@@ -198,3 +220,5 @@ grow_vertical = 2
 text = "Expecting help? Tough luck."
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LevelUI" parent="." instance=ExtResource("16_umy6k")]

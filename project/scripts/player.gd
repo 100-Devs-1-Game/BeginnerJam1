@@ -11,6 +11,9 @@ var _paused := false
 var _is_moving := false
 var _ended_on_ice := false
 var _last_moved_direction := Vector2.ZERO
+var _exit_reached := false
+
+var level_area: Node2D = null
 
 @onready var sprite: Sprite2D = %CharacterSprite
 @onready var player_area: Area2D = $Area2D
@@ -24,6 +27,7 @@ func _ready() -> void:
 	Events.new_pit_created.connect(_on_new_pit_created)
 	Events.turn_completed.connect(func(_at): _is_moving = false)
 	player_area.area_entered.connect(_on_player_area_entered)
+	move_ended.connect(_on_move_ended)
 	grid_position = (global_position / 16) as Vector2i
 	animation.play("idle")
 
@@ -119,7 +123,15 @@ func _on_player_area_entered(other: Area2D) -> void:
 		other_parent.pick_up()
 	elif other_parent is Doorway:
 		_paused = other_parent.open()
+		if _paused:
+			_exit_reached = true
 	elif other_parent is Monster:
 		die()
+	elif other_parent is LevelArea:
+		level_area = other_parent
 	else:
 		push_error("Collided with something unexpected!")
+
+func _on_move_ended(_location) -> void:
+	if level_area != null:
+		level_area.display()

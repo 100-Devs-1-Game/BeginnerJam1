@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://buhxhcwcbg1hv"]
+[gd_scene load_steps=11 format=3 uid="uid://buhxhcwcbg1hv"]
 
 [ext_resource type="Script" uid="uid://ca3tr65ahwjyx" path="res://scripts/level.gd" id="1_a381f"]
 [ext_resource type="Script" uid="uid://dq5jifbceodtk" path="res://scripts/turn_manager.gd" id="2_g1ai2"]
 [ext_resource type="TileSet" uid="uid://c20yitjo5k43l" path="res://tilesets/dungeon_tileset_with_customdata.tres" id="3_fwulr"]
 [ext_resource type="Script" uid="uid://df2p7210oc6yr" path="res://scripts/turn_on_lights.gd" id="4_i403b"]
 [ext_resource type="PackedScene" uid="uid://cug2kg3one7h2" path="res://scenes/player.tscn" id="9_mvorh"]
+[ext_resource type="PackedScene" uid="uid://k688shjetnt" path="res://scenes/ui/level_ui.tscn" id="9_qvykx"]
 [ext_resource type="Script" uid="uid://b7xp1vrsqiqcp" path="res://scripts/ui/hints_after_failure.gd" id="10_hulh5"]
 [ext_resource type="FontFile" uid="uid://3ea2t807hguu" path="res://assets/external/fonts/m5x7.ttf" id="11_yw11j"]
 [ext_resource type="PackedScene" uid="uid://bfog256vyy4sw" path="res://scenes/ui/hud.tscn" id="12_icp1j"]
@@ -76,3 +77,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="UI HUD" parent="." instance=ExtResource("12_icp1j")]
+
+[node name="LevelUI" parent="." instance=ExtResource("9_qvykx")]

@@ -1,0 +1,567 @@
+[gd_scene load_steps=28 format=4 uid="uid://c070ql5t38pj5"]
+
+[ext_resource type="Script" uid="uid://by2j7kodbwqeu" path="res://scripts/main_menu.gd" id="1_wgqco"]
+[ext_resource type="Script" uid="uid://dq5jifbceodtk" path="res://scripts/turn_manager.gd" id="2_cn35j"]
+[ext_resource type="TileSet" uid="uid://c20yitjo5k43l" path="res://tilesets/dungeon_tileset_with_customdata.tres" id="3_wko7x"]
+[ext_resource type="PackedScene" uid="uid://bgecjuif7xipy" path="res://scenes/objects/level_area_canceler.tscn" id="4_7gp8n"]
+[ext_resource type="Script" uid="uid://df2p7210oc6yr" path="res://scripts/turn_on_lights.gd" id="4_pwqr4"]
+[ext_resource type="PackedScene" uid="uid://bsxxq3yv2usx" path="res://scenes/objects/torch.tscn" id="5_7gp8n"]
+[ext_resource type="Script" uid="uid://c61024aa565n3" path="res://scripts/player.gd" id="5_pwqr4"]
+[ext_resource type="PackedScene" uid="uid://bpu4rkmys5xj0" path="res://scenes/objects/level_area.tscn" id="5_wgqco"]
+[ext_resource type="Script" uid="uid://bvpmuuqij5vl2" path="res://scripts/items/flicking_light.gd" id="6_ohdsy"]
+[ext_resource type="Script" uid="uid://cxvfuxldpik54" path="res://scripts/player_camera.gd" id="7_fwnpy"]
+[ext_resource type="FontFile" uid="uid://3ea2t807hguu" path="res://assets/external/fonts/m5x7.ttf" id="7_k0nyb"]
+[ext_resource type="Texture2D" uid="uid://bjobx1detsbol" path="res://assets/external/character/atlas/Dungeon_Character.png" id="8_k0nyb"]
+[ext_resource type="PackedScene" uid="uid://bfog256vyy4sw" path="res://scenes/ui/hud.tscn" id="8_wgqco"]
+[ext_resource type="Script" uid="uid://dq4t06d4yr3jp" path="res://scripts/ui/level_display.gd" id="12_k0nyb"]
+[ext_resource type="Theme" uid="uid://da1ms4edocy34" path="res://scenes/ui/ui_hint_theme.tres" id="12_ohdsy"]
+[ext_resource type="Texture2D" uid="uid://c45quxy6w8g3m" path="res://assets/external/coin.png" id="13_fwnpy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dw050"]
+radius = 5.0
+
+[sub_resource type="Gradient" id="Gradient_o00ia"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m8u5f"]
+gradient = SubResource("Gradient_o00ia")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="Gradient" id="Gradient_dqkch"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qlg0r"]
+gradient = SubResource("Gradient_dqkch")
+width = 11
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerVisual/Shadow:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerVisual/CharacterSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerVisual/CharacterSprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerVisual/CharacterSprite:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerVisual/CharacterSprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 8)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PlayerVisual/CharacterSprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PlayerVisual/CharacterSprite:skew")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PlayerVisual/CharacterSprite:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(3.2944162, 3.2944162, 3.2944162, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fjrip"]
+resource_name = "die"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerVisual/Shadow:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerVisual/CharacterSprite:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.0384709, 0.89884454, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerVisual/CharacterSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.163, -1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerVisual/CharacterSprite:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(3.2944162, 3.2944162, 3.2944162, 1), Color(3.2944162, 0.8815666, 0.8815666, 1), Color(0.8498186, 0.2948632, 0.2948632, 1), Color(0.84981847, 0.29486322, 0.29486322, 1), Color(0.12, 0.042000003, 0.042000003, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dead"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "fall"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerVisual/Shadow:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerVisual/CharacterSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerVisual/CharacterSprite:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(8, 8), Vector2(8, 5.215), Vector2(8, 9.005), Vector2(8, 15.535)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerVisual/CharacterSprite:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 2.6092672, 5.951572749300664]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerVisual/CharacterSprite:scale")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(0.505, 0.505), Vector2(-0.01, -0.01)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PlayerVisual/CharacterSprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fall_complete"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerVisual/Shadow:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerVisual/CharacterSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjrip"]
+_data = {
+&"RESET": SubResource("Animation_qlg0r"),
+&"die": SubResource("Animation_fjrip"),
+&"fall": SubResource("Animation_tuyoq"),
+&"idle": SubResource("Animation_dqkch")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fwnpy"]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_wgqco")
+
+[node name="TurnManager" type="Node" parent="."]
+script = ExtResource("2_cn35j")
+
+[node name="Scenery" type="Node2D" parent="."]
+
+[node name="DungeonBackground" type="TileMapLayer" parent="Scenery" groups=["dungeon", "tilemap"]]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAACAAIAAAACAAYAAAADAAIAAAACAAYAAAAEAAIAAAACAAYAAAAFAAIAAAACAAYAAAAGAAIAAAACAAYAAAAHAAIAAAACAAYAAAAIAAIAAAACAAYAAAAJAAIAAAACAAYAAAAKAAIAAAACAAYAAAAAAAIAAAACAAYAAAD//wIAAAACAAYAAAD+/wIAAAACAAYAAAD9/wIAAAACAAYAAAD8/wIAAAACAAYAAAD7/wIAAAACAAYAAAD6/wIAAAACAAYAAAD5/wIAAAACAAYAAAD4/wIAAAACAAYAAAABAAIAAAADAAcAAAD3/wIAAAADAAcAAAAJAAEAAAADAAAAAAAIAAEAAAADAAAAAAAHAAEAAAADAAAAAAAGAAEAAAADAAAAAAAFAAEAAAADAAAAAAAEAAEAAAADAAAAAAADAAEAAAADAAAAAAACAAEAAAADAAAAAAABAAEAAAADAAAAAAAAAAEAAAADAAAAAAD//wEAAAADAAAAAAD+/wEAAAADAAAAAAD9/wEAAAADAAAAAAD8/wEAAAADAAAAAAD7/wEAAAADAAAAAAD6/wEAAAADAAAAAAD5/wEAAAADAAAAAAD4/wEAAAADAAAAAAD3/wEAAAADAAAAAAD3/wMAAAABAAQAAAD4/wMAAAABAAQAAAD5/wMAAAABAAQAAAD6/wMAAAABAAQAAAD7/wMAAAABAAQAAAD8/wMAAAABAAQAAAD9/wMAAAABAAQAAAD+/wMAAAABAAQAAAD//wMAAAABAAQAAAAAAAMAAAABAAQAAAABAAMAAAABAAQAAAACAAMAAAABAAQAAAADAAMAAAABAAQAAAAEAAMAAAABAAQAAAAFAAMAAAABAAQAAAAGAAMAAAABAAQAAAAHAAMAAAABAAQAAAAIAAMAAAABAAQAAAAJAAMAAAABAAQAAAAKAAMAAAAFAAUAAAAKAAEAAAAFAAQAAAAKAAAAAAAAAAUAAAALAAAAAAABAAQAAAAKAAQAAAAAAAQAAAALAAQAAAABAAQAAAAMAAAAAAABAAQAAAAMAAQAAAABAAQAAAANAAAAAAABAAQAAAANAAQAAAABAAQAAAAOAAAAAAABAAQAAAAOAAQAAAABAAQAAAAPAAAAAAABAAQAAAAPAAQAAAABAAQAAAAQAAAAAAABAAQAAAAQAAQAAAABAAQAAAARAAAAAAABAAQAAAARAAQAAAABAAQAAAASAAAAAAABAAQAAAASAAQAAAABAAQAAAATAAAAAAABAAQAAAATAAQAAAABAAQAAAAUAAAAAAAFAAAAAAAUAAEAAAAFAAIAAAAUAAIAAAAFAAIAAAAUAAMAAAAFAAIAAAAUAAQAAAAFAAQAAAD2/wEAAAAAAAIAAAD2/wIAAAAAAAIAAAD2/wMAAAAAAAQAAAALAAEAAAADAAcAAAALAAIAAAADAAcAAAALAAMAAAADAAcAAAAMAAEAAAADAAcAAAAMAAIAAAADAAcAAAAMAAMAAAADAAcAAAANAAEAAAADAAcAAAANAAIAAAADAAcAAAANAAMAAAADAAcAAAAOAAEAAAADAAcAAAAOAAIAAAADAAcAAAAOAAMAAAADAAcAAAAPAAEAAAADAAcAAAAPAAIAAAADAAcAAAAPAAMAAAADAAcAAAAQAAEAAAADAAcAAAAQAAIAAAADAAcAAAAQAAMAAAADAAcAAAARAAEAAAADAAcAAAARAAIAAAADAAcAAAARAAMAAAADAAcAAAASAAEAAAADAAcAAAASAAIAAAADAAcAAAASAAMAAAADAAcAAAATAAEAAAADAAcAAAATAAIAAAADAAcAAAATAAMAAAADAAcAAAAZAAEAAAAJAAYAAAA=")
+tile_set = ExtResource("3_wko7x")
+
+[node name="Objects" type="TileMapLayer" parent="Scenery"]
+tile_map_data = PackedByteArray("AAALAAEAAAAIAAMAAAANAAEAAAAIAAMAAAAPAAEAAAAIAAMAAAARAAEAAAAIAAMAAAATAAEAAAAIAAMAAAATAAMAAAAIAAMAAAARAAMAAAAIAAMAAAAPAAMAAAAIAAMAAAANAAMAAAAIAAMAAAALAAMAAAAIAAMAAAAFAAEAAAAAAAkAAAAJAAEAAAAAAAkAAAATAAIAAAABAAkAABAMAAIAAAAFAAkAAAAQAAIAAAAFAAkAAAD2//v/AAAJAAYAAAD2//z/AAAJAAYAAAD2//3/AAAJAAYAAAD2//7/AAAJAAYAAAD2////AAAJAAYAAAD2/wAAAAAJAAYAAAD3//v/AAAJAAYAAAD3//z/AAAJAAYAAAD3//3/AAAJAAYAAAD3//7/AAAJAAYAAAD3////AAAJAAYAAAD3/wAAAAAJAAYAAAD4//v/AAAJAAYAAAD4//z/AAAJAAYAAAD4//3/AAAJAAYAAAD4//7/AAAJAAYAAAD4////AAAJAAYAAAD4/wAAAAAJAAYAAAD5//v/AAAJAAYAAAD5//z/AAAJAAYAAAD5//3/AAAJAAYAAAD5//7/AAAJAAYAAAD5////AAAJAAYAAAD5/wAAAAAJAAYAAAD6//v/AAAJAAYAAAD6//z/AAAJAAYAAAD6//3/AAAJAAYAAAD6//7/AAAJAAYAAAD6////AAAJAAYAAAD6/wAAAAAJAAYAAAD7//v/AAAJAAYAAAD7//z/AAAJAAYAAAD7//3/AAAJAAYAAAD7//7/AAAJAAYAAAD7////AAAJAAYAAAD7/wAAAAAJAAYAAAD8//v/AAAJAAYAAAD8//z/AAAJAAYAAAD8//3/AAAJAAYAAAD8//7/AAAJAAYAAAD8////AAAJAAYAAAD8/wAAAAAJAAYAAAD9//v/AAAJAAYAAAD9//z/AAAJAAYAAAD9//3/AAAJAAYAAAD9//7/AAAJAAYAAAD9////AAAJAAYAAAD9/wAAAAAJAAYAAAD+//v/AAAJAAYAAAD+//z/AAAJAAYAAAD+//3/AAAJAAYAAAD+//7/AAAJAAYAAAD+////AAAJAAYAAAD+/wAAAAAJAAYAAAD///v/AAAJAAYAAAD///z/AAAJAAYAAAD///3/AAAJAAYAAAD///7/AAAJAAYAAAD/////AAAJAAYAAAD//wAAAAAJAAYAAAAAAPv/AAAJAAYAAAAAAPz/AAAJAAYAAAAAAP3/AAAJAAYAAAAAAP7/AAAJAAYAAAAAAP//AAAJAAYAAAAAAAAAAAAJAAYAAAABAPv/AAAJAAYAAAABAPz/AAAJAAYAAAABAP3/AAAJAAYAAAABAP7/AAAJAAYAAAABAP//AAAJAAYAAAABAAAAAAAJAAYAAAACAPv/AAAJAAYAAAACAPz/AAAJAAYAAAACAP3/AAAJAAYAAAACAP7/AAAJAAYAAAACAP//AAAJAAYAAAACAAAAAAAJAAYAAAADAPv/AAAJAAYAAAADAPz/AAAJAAYAAAADAP3/AAAJAAYAAAADAP7/AAAJAAYAAAADAP//AAAJAAYAAAADAAAAAAAJAAYAAAAEAPv/AAAJAAYAAAAEAPz/AAAJAAYAAAAEAP3/AAAJAAYAAAAEAP7/AAAJAAYAAAAEAP//AAAJAAYAAAAEAAAAAAAJAAYAAAAFAPv/AAAJAAYAAAAFAPz/AAAJAAYAAAAFAP3/AAAJAAYAAAAFAP7/AAAJAAYAAAAFAP//AAAJAAYAAAAFAAAAAAAJAAYAAAAGAPv/AAAJAAYAAAAGAPz/AAAJAAYAAAAGAP3/AAAJAAYAAAAGAP7/AAAJAAYAAAAGAP//AAAJAAYAAAAGAAAAAAAJAAYAAAAHAPv/AAAJAAYAAAAHAPz/AAAJAAYAAAAHAP3/AAAJAAYAAAAHAP7/AAAJAAYAAAAHAP//AAAJAAYAAAAHAAAAAAAJAAYAAAAIAPv/AAAJAAYAAAAIAPz/AAAJAAYAAAAIAP3/AAAJAAYAAAAIAP7/AAAJAAYAAAAIAP//AAAJAAYAAAAIAAAAAAAJAAYAAAAJAPv/AAAJAAYAAAAJAPz/AAAJAAYAAAAJAP3/AAAJAAYAAAAJAP7/AAAJAAYAAAAJAP//AAAJAAYAAAAJAAAAAAAJAAYAAAAKAPv/AAAJAAYAAAAKAPz/AAAJAAYAAAAKAP3/AAAJAAYAAAAKAP7/AAAJAAYAAAAKAP//AAAJAAYAAAALAPv/AAAJAAYAAAALAPz/AAAJAAYAAAALAP3/AAAJAAYAAAALAP7/AAAJAAYAAAALAP//AAAJAAYAAAAMAPv/AAAJAAYAAAAMAPz/AAAJAAYAAAAMAP3/AAAJAAYAAAAMAP7/AAAJAAYAAAAMAP//AAAJAAYAAAANAPv/AAAJAAYAAAANAPz/AAAJAAYAAAANAP3/AAAJAAYAAAANAP7/AAAJAAYAAAANAP//AAAJAAYAAAAOAPv/AAAJAAYAAAAOAPz/AAAJAAYAAAAOAP3/AAAJAAYAAAAOAP7/AAAJAAYAAAAOAP//AAAJAAYAAAAPAPv/AAAJAAYAAAAPAPz/AAAJAAYAAAAPAP3/AAAJAAYAAAAPAP7/AAAJAAYAAAAPAP//AAAJAAYAAAAQAPv/AAAJAAYAAAAQAPz/AAAJAAYAAAAQAP3/AAAJAAYAAAAQAP7/AAAJAAYAAAAQAP//AAAJAAYAAAARAPv/AAAJAAYAAAARAPz/AAAJAAYAAAARAP3/AAAJAAYAAAARAP7/AAAJAAYAAAARAP//AAAJAAYAAAASAPv/AAAJAAYAAAASAPz/AAAJAAYAAAASAP3/AAAJAAYAAAASAP7/AAAJAAYAAAASAP//AAAJAAYAAAATAPv/AAAJAAYAAAATAPz/AAAJAAYAAAATAP3/AAAJAAYAAAATAP7/AAAJAAYAAAATAP//AAAJAAYAAAAUAPv/AAAJAAYAAAAUAPz/AAAJAAYAAAAUAP3/AAAJAAYAAAAUAP7/AAAJAAYAAAAUAP//AAAJAAYAAAAVAPv/AAAJAAYAAAAVAPz/AAAJAAYAAAAVAP3/AAAJAAYAAAAVAP7/AAAJAAYAAAAVAP//AAAJAAYAAAAVAAAAAAAJAAYAAAAVAAEAAAAJAAYAAAAVAAIAAAAJAAYAAAAVAAMAAAAJAAYAAAAVAAQAAAAJAAYAAAAVAAUAAAAJAAYAAAAVAAYAAAAJAAYAAAAVAAcAAAAJAAYAAAAWAPv/AAAJAAYAAAAWAPz/AAAJAAYAAAAWAP3/AAAJAAYAAAAWAP7/AAAJAAYAAAAWAP//AAAJAAYAAAAWAAAAAAAJAAYAAAAWAAEAAAAJAAYAAAAWAAIAAAAJAAYAAAAWAAMAAAAJAAYAAAAWAAQAAAAJAAYAAAAWAAUAAAAJAAYAAAAWAAYAAAAJAAYAAAAWAAcAAAAJAAYAAAAXAPv/AAAJAAYAAAAXAPz/AAAJAAYAAAAXAP3/AAAJAAYAAAAXAP7/AAAJAAYAAAAXAP//AAAJAAYAAAAXAAAAAAAJAAYAAAAXAAEAAAAJAAYAAAAXAAIAAAAJAAYAAAAXAAMAAAAJAAYAAAAXAAQAAAAJAAYAAAAXAAUAAAAJAAYAAAAXAAYAAAAJAAYAAAAXAAcAAAAJAAYAAAAYAPv/AAAJAAYAAAAYAPz/AAAJAAYAAAAYAP3/AAAJAAYAAAAYAP7/AAAJAAYAAAAYAP//AAAJAAYAAAAYAAAAAAAJAAYAAAAYAAEAAAAJAAYAAAAYAAIAAAAJAAYAAAAYAAMAAAAJAAYAAAAYAAQAAAAJAAYAAAAYAAUAAAAJAAYAAAAYAAYAAAAJAAYAAAAYAAcAAAAJAAYAAAAZAPv/AAAJAAYAAAAZAPz/AAAJAAYAAAAZAP3/AAAJAAYAAAAZAP7/AAAJAAYAAAAZAP//AAAJAAYAAAAZAAAAAAAJAAYAAAAZAAEAAAAJAAYAAAAZAAIAAAAJAAYAAAAZAAMAAAAJAAYAAAAZAAQAAAAJAAYAAAAZAAUAAAAJAAYAAAAZAAYAAAAJAAYAAAAZAAcAAAAJAAYAAAAaAPv/AAAJAAYAAAAaAPz/AAAJAAYAAAAaAP3/AAAJAAYAAAAaAP7/AAAJAAYAAAAaAP//AAAJAAYAAAAaAAAAAAAJAAYAAAAaAAEAAAAJAAYAAAAaAAIAAAAJAAYAAAAaAAMAAAAJAAYAAAAaAAQAAAAJAAYAAAAaAAUAAAAJAAYAAAAaAAYAAAAJAAYAAAAaAAcAAAAJAAYAAAAbAPv/AAAJAAYAAAAbAPz/AAAJAAYAAAAbAP3/AAAJAAYAAAAbAP7/AAAJAAYAAAAbAP//AAAJAAYAAAAbAAAAAAAJAAYAAAAbAAEAAAAJAAYAAAAbAAIAAAAJAAYAAAAbAAMAAAAJAAYAAAAbAAQAAAAJAAYAAAAbAAUAAAAJAAYAAAAbAAYAAAAJAAYAAAAbAAcAAAAJAAYAAAAcAPv/AAAJAAYAAAAcAPz/AAAJAAYAAAAcAP3/AAAJAAYAAAAcAP7/AAAJAAYAAAAcAP//AAAJAAYAAAAcAAAAAAAJAAYAAAAcAAEAAAAJAAYAAAAcAAIAAAAJAAYAAAAcAAMAAAAJAAYAAAAcAAQAAAAJAAYAAAAcAAUAAAAJAAYAAAAcAAYAAAAJAAYAAAAcAAcAAAAJAAYAAAAdAPv/AAAJAAYAAAAdAPz/AAAJAAYAAAAdAP3/AAAJAAYAAAAdAP7/AAAJAAYAAAAdAP//AAAJAAYAAAAdAAAAAAAJAAYAAAAdAAEAAAAJAAYAAAAdAAIAAAAJAAYAAAAdAAMAAAAJAAYAAAAdAAQAAAAJAAYAAAAdAAUAAAAJAAYAAAAdAAYAAAAJAAYAAAAdAAcAAAAJAAYAAAAeAPv/AAAJAAYAAAAeAPz/AAAJAAYAAAAeAP3/AAAJAAYAAAAeAP7/AAAJAAYAAAAeAP//AAAJAAYAAAAeAAAAAAAJAAYAAAAeAAEAAAAJAAYAAAAeAAIAAAAJAAYAAAAeAAMAAAAJAAYAAAAeAAQAAAAJAAYAAAAeAAUAAAAJAAYAAAAeAAYAAAAJAAYAAAAeAAcAAAAJAAYAAAD2/wQAAAAJAAYAAAD2/wUAAAAJAAYAAAD2/wYAAAAJAAYAAAD2/wcAAAAJAAYAAAD2/wgAAAAJAAYAAAD3/wQAAAAJAAYAAAD3/wUAAAAJAAYAAAD3/wYAAAAJAAYAAAD3/wcAAAAJAAYAAAD3/wgAAAAJAAYAAAD4/wQAAAAJAAYAAAD4/wUAAAAJAAYAAAD4/wYAAAAJAAYAAAD4/wcAAAAJAAYAAAD4/wgAAAAJAAYAAAD5/wQAAAAJAAYAAAD5/wUAAAAJAAYAAAD5/wYAAAAJAAYAAAD5/wcAAAAJAAYAAAD5/wgAAAAJAAYAAAD6/wQAAAAJAAYAAAD6/wUAAAAJAAYAAAD6/wYAAAAJAAYAAAD6/wcAAAAJAAYAAAD6/wgAAAAJAAYAAAD7/wQAAAAJAAYAAAD7/wUAAAAJAAYAAAD7/wYAAAAJAAYAAAD7/wcAAAAJAAYAAAD7/wgAAAAJAAYAAAD8/wQAAAAJAAYAAAD8/wUAAAAJAAYAAAD8/wYAAAAJAAYAAAD8/wcAAAAJAAYAAAD8/wgAAAAJAAYAAAD9/wQAAAAJAAYAAAD9/wUAAAAJAAYAAAD9/wYAAAAJAAYAAAD9/wcAAAAJAAYAAAD9/wgAAAAJAAYAAAD+/wQAAAAJAAYAAAD+/wUAAAAJAAYAAAD+/wYAAAAJAAYAAAD+/wcAAAAJAAYAAAD+/wgAAAAJAAYAAAD//wQAAAAJAAYAAAD//wUAAAAJAAYAAAD//wYAAAAJAAYAAAD//wcAAAAJAAYAAAD//wgAAAAJAAYAAAAAAAQAAAAJAAYAAAAAAAUAAAAJAAYAAAAAAAYAAAAJAAYAAAAAAAcAAAAJAAYAAAAAAAgAAAAJAAYAAAABAAQAAAAJAAYAAAABAAUAAAAJAAYAAAABAAYAAAAJAAYAAAABAAcAAAAJAAYAAAABAAgAAAAJAAYAAAACAAQAAAAJAAYAAAACAAUAAAAJAAYAAAACAAYAAAAJAAYAAAACAAcAAAAJAAYAAAACAAgAAAAJAAYAAAADAAQAAAAJAAYAAAADAAUAAAAJAAYAAAADAAYAAAAJAAYAAAADAAcAAAAJAAYAAAADAAgAAAAJAAYAAAAEAAQAAAAJAAYAAAAEAAUAAAAJAAYAAAAEAAYAAAAJAAYAAAAEAAcAAAAJAAYAAAAEAAgAAAAJAAYAAAAFAAQAAAAJAAYAAAAFAAUAAAAJAAYAAAAFAAYAAAAJAAYAAAAFAAcAAAAJAAYAAAAFAAgAAAAJAAYAAAAGAAQAAAAJAAYAAAAGAAUAAAAJAAYAAAAGAAYAAAAJAAYAAAAGAAcAAAAJAAYAAAAGAAgAAAAJAAYAAAAHAAQAAAAJAAYAAAAHAAUAAAAJAAYAAAAHAAYAAAAJAAYAAAAHAAcAAAAJAAYAAAAHAAgAAAAJAAYAAAAIAAQAAAAJAAYAAAAIAAUAAAAJAAYAAAAIAAYAAAAJAAYAAAAIAAcAAAAJAAYAAAAIAAgAAAAJAAYAAAAJAAQAAAAJAAYAAAAJAAUAAAAJAAYAAAAJAAYAAAAJAAYAAAAJAAcAAAAJAAYAAAAJAAgAAAAJAAYAAAAKAAUAAAAJAAYAAAAKAAYAAAAJAAYAAAAKAAcAAAAJAAYAAAAKAAgAAAAJAAYAAAALAAUAAAAJAAYAAAALAAYAAAAJAAYAAAALAAcAAAAJAAYAAAALAAgAAAAJAAYAAAAMAAUAAAAJAAYAAAAMAAYAAAAJAAYAAAAMAAcAAAAJAAYAAAAMAAgAAAAJAAYAAAANAAUAAAAJAAYAAAANAAYAAAAJAAYAAAANAAcAAAAJAAYAAAANAAgAAAAJAAYAAAAOAAUAAAAJAAYAAAAOAAYAAAAJAAYAAAAOAAcAAAAJAAYAAAAOAAgAAAAJAAYAAAAPAAUAAAAJAAYAAAAPAAYAAAAJAAYAAAAPAAcAAAAJAAYAAAAPAAgAAAAJAAYAAAAQAAUAAAAJAAYAAAAQAAYAAAAJAAYAAAAQAAcAAAAJAAYAAAAQAAgAAAAJAAYAAAARAAUAAAAJAAYAAAARAAYAAAAJAAYAAAARAAcAAAAJAAYAAAARAAgAAAAJAAYAAAASAAUAAAAJAAYAAAASAAYAAAAJAAYAAAASAAcAAAAJAAYAAAASAAgAAAAJAAYAAAATAAUAAAAJAAYAAAATAAYAAAAJAAYAAAATAAcAAAAJAAYAAAATAAgAAAAJAAYAAAAUAAUAAAAJAAYAAAAUAAYAAAAJAAYAAAAUAAcAAAAJAAYAAAAUAAgAAAAJAAYAAAAVAAgAAAAJAAYAAAAWAAgAAAAJAAYAAAAXAAgAAAAJAAYAAAAYAAgAAAAJAAYAAAAZAAgAAAAJAAYAAAAaAAgAAAAJAAYAAAAbAAgAAAAJAAYAAAAcAAgAAAAJAAYAAAAdAAgAAAAJAAYAAAAeAAgAAAAJAAYAAADp//v/AAAJAAYAAADp//z/AAAJAAYAAADp//3/AAAJAAYAAADp//7/AAAJAAYAAADp////AAAJAAYAAADp/wAAAAAJAAYAAADp/wEAAAAJAAYAAADp/wIAAAAJAAYAAADp/wMAAAAJAAYAAADp/wQAAAAJAAYAAADp/wUAAAAJAAYAAADp/wYAAAAJAAYAAADp/wcAAAAJAAYAAADp/wgAAAAJAAYAAADq//v/AAAJAAYAAADq//z/AAAJAAYAAADq//3/AAAJAAYAAADq//7/AAAJAAYAAADq////AAAJAAYAAADq/wAAAAAJAAYAAADq/wEAAAAJAAYAAADq/wIAAAAJAAYAAADq/wMAAAAJAAYAAADq/wQAAAAJAAYAAADq/wUAAAAJAAYAAADq/wYAAAAJAAYAAADq/wcAAAAJAAYAAADq/wgAAAAJAAYAAADr//v/AAAJAAYAAADr//z/AAAJAAYAAADr//3/AAAJAAYAAADr//7/AAAJAAYAAADr////AAAJAAYAAADr/wAAAAAJAAYAAADr/wEAAAAJAAYAAADr/wIAAAAJAAYAAADr/wMAAAAJAAYAAADr/wQAAAAJAAYAAADr/wUAAAAJAAYAAADr/wYAAAAJAAYAAADr/wcAAAAJAAYAAADr/wgAAAAJAAYAAADs//v/AAAJAAYAAADs//z/AAAJAAYAAADs//3/AAAJAAYAAADs//7/AAAJAAYAAADs////AAAJAAYAAADs/wAAAAAJAAYAAADs/wEAAAAJAAYAAADs/wIAAAAJAAYAAADs/wMAAAAJAAYAAADs/wQAAAAJAAYAAADs/wUAAAAJAAYAAADs/wYAAAAJAAYAAADs/wcAAAAJAAYAAADs/wgAAAAJAAYAAADt//v/AAAJAAYAAADt//z/AAAJAAYAAADt//3/AAAJAAYAAADt//7/AAAJAAYAAADt////AAAJAAYAAADt/wAAAAAJAAYAAADt/wEAAAAJAAYAAADt/wIAAAAJAAYAAADt/wMAAAAJAAYAAADt/wQAAAAJAAYAAADt/wUAAAAJAAYAAADt/wYAAAAJAAYAAADt/wcAAAAJAAYAAADt/wgAAAAJAAYAAADu//v/AAAJAAYAAADu//z/AAAJAAYAAADu//3/AAAJAAYAAADu//7/AAAJAAYAAADu////AAAJAAYAAADu/wAAAAAJAAYAAADu/wEAAAAJAAYAAADu/wIAAAAJAAYAAADu/wMAAAAJAAYAAADu/wQAAAAJAAYAAADu/wUAAAAJAAYAAADu/wYAAAAJAAYAAADu/wcAAAAJAAYAAADu/wgAAAAJAAYAAADv//v/AAAJAAYAAADv//z/AAAJAAYAAADv//3/AAAJAAYAAADv//7/AAAJAAYAAADv////AAAJAAYAAADv/wAAAAAJAAYAAADv/wEAAAAJAAYAAADv/wIAAAAJAAYAAADv/wMAAAAJAAYAAADv/wQAAAAJAAYAAADv/wUAAAAJAAYAAADv/wYAAAAJAAYAAADv/wcAAAAJAAYAAADv/wgAAAAJAAYAAADw//v/AAAJAAYAAADw//z/AAAJAAYAAADw//3/AAAJAAYAAADw//7/AAAJAAYAAADw////AAAJAAYAAADw/wAAAAAJAAYAAADw/wEAAAAJAAYAAADw/wIAAAAJAAYAAADw/wMAAAAJAAYAAADw/wQAAAAJAAYAAADw/wUAAAAJAAYAAADw/wYAAAAJAAYAAADw/wcAAAAJAAYAAADw/wgAAAAJAAYAAADx//v/AAAJAAYAAADx//z/AAAJAAYAAADx//3/AAAJAAYAAADx//7/AAAJAAYAAADx////AAAJAAYAAADx/wAAAAAJAAYAAADx/wEAAAAJAAYAAADx/wIAAAAJAAYAAADx/wMAAAAJAAYAAADx/wQAAAAJAAYAAADx/wUAAAAJAAYAAADx/wYAAAAJAAYAAADx/wcAAAAJAAYAAADx/wgAAAAJAAYAAADy//v/AAAJAAYAAADy//z/AAAJAAYAAADy//3/AAAJAAYAAADy//7/AAAJAAYAAADy////AAAJAAYAAADy/wAAAAAJAAYAAADy/wEAAAAJAAYAAADy/wIAAAAJAAYAAADy/wMAAAAJAAYAAADy/wQAAAAJAAYAAADy/wUAAAAJAAYAAADy/wYAAAAJAAYAAADy/wcAAAAJAAYAAADy/wgAAAAJAAYAAADz//v/AAAJAAYAAADz//z/AAAJAAYAAADz//3/AAAJAAYAAADz//7/AAAJAAYAAADz////AAAJAAYAAADz/wAAAAAJAAYAAADz/wEAAAAJAAYAAADz/wIAAAAJAAYAAADz/wMAAAAJAAYAAADz/wQAAAAJAAYAAADz/wUAAAAJAAYAAADz/wYAAAAJAAYAAADz/wcAAAAJAAYAAADz/wgAAAAJAAYAAAD0//v/AAAJAAYAAAD0//z/AAAJAAYAAAD0//3/AAAJAAYAAAD0//7/AAAJAAYAAAD0////AAAJAAYAAAD0/wAAAAAJAAYAAAD0/wEAAAAJAAYAAAD0/wIAAAAJAAYAAAD0/wMAAAAJAAYAAAD0/wQAAAAJAAYAAAD0/wUAAAAJAAYAAAD0/wYAAAAJAAYAAAD0/wcAAAAJAAYAAAD0/wgAAAAJAAYAAAD1//v/AAAJAAYAAAD1//z/AAAJAAYAAAD1//3/AAAJAAYAAAD1//7/AAAJAAYAAAD1////AAAJAAYAAAD1/wAAAAAJAAYAAAD1/wEAAAAJAAYAAAD1/wIAAAAJAAYAAAD1/wMAAAAJAAYAAAD1/wQAAAAJAAYAAAD1/wUAAAAJAAYAAAD1/wYAAAAJAAYAAAD1/wcAAAAJAAYAAAD1/wgAAAAJAAYAAAAfAPv/AAAJAAYAAAAfAPz/AAAJAAYAAAAfAP3/AAAJAAYAAAAfAP7/AAAJAAYAAAAfAP//AAAJAAYAAAAfAAAAAAAJAAYAAAAfAAEAAAAJAAYAAAAfAAIAAAAJAAYAAAAfAAMAAAAJAAYAAAAfAAQAAAAJAAYAAAAfAAUAAAAJAAYAAAAfAAYAAAAJAAYAAAAfAAcAAAAJAAYAAAAfAAgAAAAJAAYAAAAgAPv/AAAJAAYAAAAgAPz/AAAJAAYAAAAgAP3/AAAJAAYAAAAgAP7/AAAJAAYAAAAgAP//AAAJAAYAAAAgAAAAAAAJAAYAAAAgAAEAAAAJAAYAAAAgAAIAAAAJAAYAAAAgAAMAAAAJAAYAAAAgAAQAAAAJAAYAAAAgAAUAAAAJAAYAAAAgAAYAAAAJAAYAAAAgAAcAAAAJAAYAAAAgAAgAAAAJAAYAAAAhAPv/AAAJAAYAAAAhAPz/AAAJAAYAAAAhAP3/AAAJAAYAAAAhAP7/AAAJAAYAAAAhAP//AAAJAAYAAAAhAAAAAAAJAAYAAAAhAAEAAAAJAAYAAAAhAAIAAAAJAAYAAAAhAAMAAAAJAAYAAAAhAAQAAAAJAAYAAAAhAAUAAAAJAAYAAAAhAAYAAAAJAAYAAAAhAAcAAAAJAAYAAAAhAAgAAAAJAAYAAAAiAPv/AAAJAAYAAAAiAPz/AAAJAAYAAAAiAP3/AAAJAAYAAAAiAP7/AAAJAAYAAAAiAP//AAAJAAYAAAAiAAAAAAAJAAYAAAAiAAEAAAAJAAYAAAAiAAIAAAAJAAYAAAAiAAMAAAAJAAYAAAAiAAQAAAAJAAYAAAAiAAUAAAAJAAYAAAAiAAYAAAAJAAYAAAAiAAcAAAAJAAYAAAAiAAgAAAAJAAYAAAAjAPv/AAAJAAYAAAAjAPz/AAAJAAYAAAAjAP3/AAAJAAYAAAAjAP7/AAAJAAYAAAAjAP//AAAJAAYAAAAjAAAAAAAJAAYAAAAjAAEAAAAJAAYAAAAjAAIAAAAJAAYAAAAjAAMAAAAJAAYAAAAjAAQAAAAJAAYAAAAjAAUAAAAJAAYAAAAjAAYAAAAJAAYAAAAjAAcAAAAJAAYAAAAjAAgAAAAJAAYAAAAkAPv/AAAJAAYAAAAkAPz/AAAJAAYAAAAkAP3/AAAJAAYAAAAkAP7/AAAJAAYAAAAkAP//AAAJAAYAAAAkAAAAAAAJAAYAAAAkAAEAAAAJAAYAAAAkAAIAAAAJAAYAAAAkAAMAAAAJAAYAAAAkAAQAAAAJAAYAAAAkAAUAAAAJAAYAAAAkAAYAAAAJAAYAAAAkAAcAAAAJAAYAAAAkAAgAAAAJAAYAAAAlAPv/AAAJAAYAAAAlAPz/AAAJAAYAAAAlAP3/AAAJAAYAAAAlAP7/AAAJAAYAAAAlAP//AAAJAAYAAAAlAAAAAAAJAAYAAAAlAAEAAAAJAAYAAAAlAAIAAAAJAAYAAAAlAAMAAAAJAAYAAAAlAAQAAAAJAAYAAAAlAAUAAAAJAAYAAAAlAAYAAAAJAAYAAAAlAAcAAAAJAAYAAAAlAAgAAAAJAAYAAAAmAPv/AAAJAAYAAAAmAPz/AAAJAAYAAAAmAP3/AAAJAAYAAAAmAP7/AAAJAAYAAAAmAP//AAAJAAYAAAAmAAAAAAAJAAYAAAAmAAEAAAAJAAYAAAAmAAIAAAAJAAYAAAAmAAMAAAAJAAYAAAAmAAQAAAAJAAYAAAAmAAUAAAAJAAYAAAAmAAYAAAAJAAYAAAAmAAcAAAAJAAYAAAAmAAgAAAAJAAYAAAA=")
+tile_set = ExtResource("3_wko7x")
+
+[node name="Lights" type="Node2D" parent="."]
+script = ExtResource("4_pwqr4")
+
+[node name="DarkWorld" type="DirectionalLight2D" parent="Lights"]
+energy = 0.71
+blend_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="PointLight2D" parent="Lights" instance=ExtResource("5_7gp8n")]
+position = Vector2(88, 24)
+
+[node name="PointLight2D2" parent="Lights" instance=ExtResource("5_7gp8n")]
+position = Vector2(152, 24)
+
+[node name="PointLight2D3" parent="Lights" instance=ExtResource("5_7gp8n")]
+position = Vector2(200.00002, 40)
+
+[node name="PointLight2D4" parent="Lights" instance=ExtResource("5_7gp8n")]
+position = Vector2(264, 40)
+
+[node name="PointLight2D5" parent="Lights" instance=ExtResource("5_7gp8n")]
+position = Vector2(320, 40)
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="LevelAreas" type="Node2D" parent="World"]
+unique_name_in_owner = true
+
+[node name="LevelArea" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
+position = Vector2(176, 16)
+display_name = "Straightforward"
+
+[node name="LevelArea2" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
+position = Vector2(208, 16)
+display_name = "Cold Bones"
+
+[node name="LevelArea3" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
+position = Vector2(240, 16)
+display_name = "Sandy Bridge"
+
+[node name="LevelArea4" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
+position = Vector2(272, 16)
+display_name = "Four Red Floors"
+
+[node name="LevelArea5" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
+position = Vector2(304, 16)
+display_name = "Not Straightforward"
+
+[node name="LevelArea6" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
+position = Vector2(176, 48)
+display_name = "Skele-rink"
+
+[node name="LevelArea7" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
+position = Vector2(208, 48)
+display_name = "Dance Macabre"
+
+[node name="LevelArea8" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
+position = Vector2(240, 48)
+
+[node name="LevelArea9" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
+position = Vector2(272, 48)
+
+[node name="LevelArea10" parent="World/LevelAreas" instance=ExtResource("5_wgqco")]
+position = Vector2(304, 48)
+
+[node name="LevelAreaCanceler" parent="World" instance=ExtResource("4_7gp8n")]
+position = Vector2(160, 32)
+
+[node name="Player" type="Node2D" parent="." groups=["player"]]
+unique_name_in_owner = true
+position = Vector2(16, 32)
+script = ExtResource("5_pwqr4")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+collision_mask = 104
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+position = Vector2(8, 8)
+shape = SubResource("CircleShape2D_dw050")
+debug_color = Color(0.7401551, 2.3675015, 4.985408, 0)
+
+[node name="CharacterTorch" type="PointLight2D" parent="Player"]
+position = Vector2(8, 8)
+color = Color(0.89, 0.30616003, 0.1602, 1)
+energy = 1.7
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_m8u5f")
+script = ExtResource("6_ohdsy")
+start_flick_energy = 1.4
+end_flick_energy = 1.9
+metadata/_edit_lock_ = true
+
+[node name="PlayerCamera" type="Camera2D" parent="Player"]
+position = Vector2(8, 8)
+editor_draw_limits = true
+script = ExtResource("7_fwnpy")
+
+[node name="PlayerVisual" type="Node2D" parent="Player"]
+unique_name_in_owner = true
+
+[node name="Shadow" type="Sprite2D" parent="Player/PlayerVisual"]
+unique_name_in_owner = true
+position = Vector2(8, 15)
+texture = SubResource("GradientTexture1D_qlg0r")
+
+[node name="CharacterSprite" type="Sprite2D" parent="Player/PlayerVisual"]
+unique_name_in_owner = true
+self_modulate = Color(3.2944162, 3.2944162, 3.2944162, 1)
+light_mask = 0
+position = Vector2(8, 8)
+texture = ExtResource("8_k0nyb")
+hframes = 7
+vframes = 4
+frame = 3
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+&"": SubResource("AnimationLibrary_fjrip")
+}
+
+[node name="UI HUD" parent="." instance=ExtResource("8_wgqco")]
+visible = false
+
+[node name="LevelDisplay" type="CanvasLayer" parent="."]
+script = ExtResource("12_k0nyb")
+
+[node name="Control" type="Control" parent="LevelDisplay"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("12_ohdsy")
+
+[node name="Panel" type="Panel" parent="LevelDisplay/Control"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 35.0
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelDisplay/Control"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 35.0
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="LevelDisplay/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelDisplay/Control/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Panel2" type="Panel" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fwnpy")
+
+[node name="LevelName" type="Label" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Level Name"
+
+[node name="Panel3" type="Panel" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fwnpy")
+
+[node name="RatingDisplay" type="MarginContainer" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="LevelDisplay/Control/MarginContainer/HBoxContainer/RatingDisplay"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelDisplay/Control/MarginContainer/HBoxContainer/RatingDisplay/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="LevelDisplay/Control/MarginContainer/HBoxContainer/RatingDisplay/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_fwnpy")
+stretch_mode = 5
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="LevelDisplay/Control/MarginContainer/HBoxContainer/RatingDisplay/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_fwnpy")
+stretch_mode = 5
+flip_h = true
+
+[node name="TextureRect3" type="TextureRect" parent="LevelDisplay/Control/MarginContainer/HBoxContainer/RatingDisplay/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_fwnpy")
+stretch_mode = 5
+flip_h = true
+
+[node name="Panel" type="Panel" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fwnpy")
+
+[node name="PlayButton" type="Button" parent="LevelDisplay/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8894804, 0.60969263, 1.1551381e-06, 1)
+theme_override_fonts/font = ExtResource("7_k0nyb")
+text = "Play"

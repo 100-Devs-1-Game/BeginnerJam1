@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://c0rjmcisgel26"]
+[gd_scene load_steps=17 format=4 uid="uid://c0rjmcisgel26"]
 
 [ext_resource type="Script" uid="uid://ca3tr65ahwjyx" path="res://scripts/level.gd" id="1_8ri5e"]
 [ext_resource type="Script" uid="uid://dq5jifbceodtk" path="res://scripts/turn_manager.gd" id="2_1057k"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b7xp1vrsqiqcp" path="res://scripts/ui/hints_after_failure.gd" id="10_1057k"]
 [ext_resource type="FontFile" uid="uid://3ea2t807hguu" path="res://assets/external/fonts/m5x7.ttf" id="10_tikvp"]
 [ext_resource type="PackedScene" uid="uid://bfog256vyy4sw" path="res://scenes/ui/hud.tscn" id="11_x3kkr"]
+[ext_resource type="PackedScene" uid="uid://k688shjetnt" path="res://scenes/ui/level_ui.tscn" id="13_cxxkw"]
 
 [sub_resource type="Gradient" id="Gradient_wt17y"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -132,3 +133,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="UI HUD" parent="." instance=ExtResource("11_x3kkr")]
+
+[node name="LevelUI" parent="." instance=ExtResource("13_cxxkw")]
