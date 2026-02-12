@@ -11,6 +11,7 @@ const COOLEST_LEVEL = preload("uid://hoyjai2f2n5x") # Skele-rink
 const DANCE_MACABRE = preload("uid://dpfmwpouve6i8") # Dance Macabre
 
 const MAX_SANDBAGS = 3
+const MAX_COINS = 3
 const AUTOMATIC_RESTART = false
 
 var levels: Array[PackedScene] = []
@@ -31,13 +32,19 @@ var sandbags: int = 0:
 			sandbags = v
 			Events.sandbags_changed.emit(v)
 var bridge: bool = false
-
+var coins: int = 0:
+	set(v):
+		v = clampi(v, 0, MAX_COINS)
+		if coins != v:
+			coins = v
 
 func _ready() -> void:
 	Events.level_selected.connect(func(d): _current_level = d["scene"])
 	Events.key_picked_up.connect(func(): has_key = true)
 	Events.key_used.connect(func(): has_key = false)
-
+	Events.coin_collected.connect(func(): coins += 1)
+	Events.level_completed.connect(_submit_coins)
+	
 	# Auto restart or show fail message and hint?
 	if not AUTOMATIC_RESTART:
 		Events.level_failed.connect(restart_level)
@@ -99,7 +106,6 @@ func use_bridge() -> bool:
 	bridge = false
 	return true
 
-
 ## Register yourself as an actor that wants to do something on each turn
 func register(callback: Callable, done: Signal) -> bool:
 	if not turn_manager:
@@ -119,7 +125,6 @@ func unregister(callback: Callable, done: Signal) -> bool:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
-
 
 func play_level() -> void:
 	get_tree().call_deferred("change_scene_to_packed", _current_level)
@@ -146,7 +151,9 @@ func next_level() -> void:
 func restart_level() -> void:
 	get_tree().reload_current_scene()
 
-
+func _submit_coins() -> void:
+	var file = FileAccess.open("res://assets/scores.dat", FileAccess.READ_WRITE)
+	file.
 func _on_scene_changed() -> void:
 	_reset_player_inventory()
 	turn_manager = get_tree().get_first_node_in_group("turn_manager")

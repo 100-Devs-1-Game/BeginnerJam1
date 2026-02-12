@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cug2kg3one7h2"]
+[gd_scene format=3 uid="uid://cug2kg3one7h2"]
 
 [ext_resource type="Script" uid="uid://c61024aa565n3" path="res://scripts/player.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://bjobx1detsbol" path="res://assets/external/character/atlas/Dungeon_Character.png" id="2_sweqy"]
@@ -317,20 +317,20 @@ _data = {
 &"idle": SubResource("Animation_dqkch")
 }
 
-[node name="Player" type="Node2D" groups=["player"]]
+[node name="Player" type="Node2D" unique_id=161636548 groups=["player"]]
 script = ExtResource("1_hqtel")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1921214660]
 collision_layer = 0
 collision_mask = 104
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=177694065]
 position = Vector2(8, 8)
 shape = SubResource("CircleShape2D_dw050")
 debug_color = Color(0.7401551, 2.3675015, 4.985408, 0)
 
-[node name="CharacterTorch" type="PointLight2D" parent="."]
+[node name="CharacterTorch" type="PointLight2D" parent="." unique_id=1982612147]
 position = Vector2(8, 8)
 color = Color(0.89, 0.30616003, 0.1602, 1)
 energy = 1.7
@@ -341,20 +341,20 @@ start_flick_energy = 1.4
 end_flick_energy = 1.9
 metadata/_edit_lock_ = true
 
-[node name="PlayerCamera" type="Camera2D" parent="."]
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=1474291433]
 position = Vector2(8, 8)
 editor_draw_limits = true
 script = ExtResource("4_1jxqw")
 
-[node name="PlayerVisual" type="Node2D" parent="."]
+[node name="PlayerVisual" type="Node2D" parent="." unique_id=1584544390]
 unique_name_in_owner = true
 
-[node name="Shadow" type="Sprite2D" parent="PlayerVisual"]
+[node name="Shadow" type="Sprite2D" parent="PlayerVisual" unique_id=1171212315]
 unique_name_in_owner = true
 position = Vector2(8, 15)
 texture = SubResource("GradientTexture1D_qlg0r")
 
-[node name="CharacterSprite" type="Sprite2D" parent="PlayerVisual"]
+[node name="CharacterSprite" type="Sprite2D" parent="PlayerVisual" unique_id=122999842]
 unique_name_in_owner = true
 self_modulate = Color(3.2944162, 3.2944162, 3.2944162, 1)
 light_mask = 0
@@ -365,7 +365,5 @@ vframes = 4
 frame = 3
 metadata/_edit_lock_ = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_fjrip")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=710790149]
+libraries/ = SubResource("AnimationLibrary_fjrip")

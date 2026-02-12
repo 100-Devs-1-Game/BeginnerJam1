@@ -1,52 +1,70 @@
-[gd_scene load_steps=11 format=3 uid="uid://buhxhcwcbg1hv"]
+[gd_scene format=3 uid="uid://buhxhcwcbg1hv"]
 
 [ext_resource type="Script" uid="uid://ca3tr65ahwjyx" path="res://scripts/level.gd" id="1_a381f"]
 [ext_resource type="Script" uid="uid://dq5jifbceodtk" path="res://scripts/turn_manager.gd" id="2_g1ai2"]
 [ext_resource type="TileSet" uid="uid://c20yitjo5k43l" path="res://tilesets/dungeon_tileset_with_customdata.tres" id="3_fwulr"]
 [ext_resource type="Script" uid="uid://df2p7210oc6yr" path="res://scripts/turn_on_lights.gd" id="4_i403b"]
+[ext_resource type="Texture2D" uid="uid://c45quxy6w8g3m" path="res://assets/external/coin.png" id="5_bujjw"]
+[ext_resource type="Script" uid="uid://c6qko5a0gwiui" path="res://scripts/items/coin.gd" id="5_hq32h"]
 [ext_resource type="PackedScene" uid="uid://cug2kg3one7h2" path="res://scenes/player.tscn" id="9_mvorh"]
 [ext_resource type="PackedScene" uid="uid://k688shjetnt" path="res://scenes/ui/level_ui.tscn" id="9_qvykx"]
 [ext_resource type="Script" uid="uid://b7xp1vrsqiqcp" path="res://scripts/ui/hints_after_failure.gd" id="10_hulh5"]
 [ext_resource type="FontFile" uid="uid://3ea2t807hguu" path="res://assets/external/fonts/m5x7.ttf" id="11_yw11j"]
 [ext_resource type="PackedScene" uid="uid://bfog256vyy4sw" path="res://scenes/ui/hud.tscn" id="12_icp1j"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qvykx"]
+radius = 5.0990195
+
 [sub_resource type="Theme" id="Theme_y8ti4"]
 Label/colors/font_color = Color(0.78, 0.52364, 0.51479995, 1)
 Label/fonts/font = ExtResource("11_yw11j")
 
-[node name="LevelOne" type="Node"]
+[node name="LevelOne" type="Node" unique_id=966776832]
 script = ExtResource("1_a381f")
 
-[node name="TurnManager" type="Node" parent="."]
+[node name="TurnManager" type="Node" parent="." unique_id=857664195]
 script = ExtResource("2_g1ai2")
 
-[node name="Scenery" type="Node2D" parent="."]
+[node name="Scenery" type="Node2D" parent="." unique_id=1866980081]
 
-[node name="DungeonBackground" type="TileMapLayer" parent="Scenery" groups=["dungeon", "tilemap"]]
+[node name="DungeonBackground" type="TileMapLayer" parent="Scenery" unique_id=382315432 groups=["dungeon", "tilemap"]]
 unique_name_in_owner = true
 tile_set = ExtResource("3_fwulr")
 
-[node name="Objects" type="TileMapLayer" parent="Scenery"]
+[node name="Objects" type="TileMapLayer" parent="Scenery" unique_id=725144641]
 tile_set = ExtResource("3_fwulr")
 
-[node name="Lights" type="Node2D" parent="."]
+[node name="Lights" type="Node2D" parent="." unique_id=1067542348]
 script = ExtResource("4_i403b")
 
-[node name="DarkWorld" type="DirectionalLight2D" parent="Lights"]
+[node name="DarkWorld" type="DirectionalLight2D" parent="Lights" unique_id=1006074755]
 energy = 0.71
 blend_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=1130304598]
 
-[node name="Player" parent="." instance=ExtResource("9_mvorh")]
+[node name="Coin" type="Node2D" parent="World" unique_id=1018305073]
+script = ExtResource("5_hq32h")
+
+[node name="Area" type="Area2D" parent="World/Coin" unique_id=879021468]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Coin/Area" unique_id=946316792]
+shape = SubResource("CircleShape2D_qvykx")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Coin" unique_id=1930416014]
+texture = ExtResource("5_bujjw")
+
+[node name="Player" parent="." unique_id=533636799 instance=ExtResource("9_mvorh")]
 unique_name_in_owner = true
 position = Vector2(16, 32)
 
-[node name="UI Hints" type="CanvasLayer" parent="."]
+[node name="UI Hints" type="CanvasLayer" parent="." unique_id=1720972909]
 script = ExtResource("10_hulh5")
 
-[node name="Control" type="Control" parent="UI Hints"]
+[node name="Control" type="Control" parent="UI Hints" unique_id=1168849346]
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -59,7 +77,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource("Theme_y8ti4")
 
-[node name="Label" type="Label" parent="UI Hints/Control"]
+[node name="Label" type="Label" parent="UI Hints/Control" unique_id=551347402]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -76,6 +94,6 @@ text = "PLACEHOLDER LEVEL HINT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UI HUD" parent="." instance=ExtResource("12_icp1j")]
+[node name="UI HUD" parent="." unique_id=1687337469 instance=ExtResource("12_icp1j")]
 
-[node name="LevelUI" parent="." instance=ExtResource("9_qvykx")]
+[node name="LevelUI" parent="." unique_id=1099747195 instance=ExtResource("9_qvykx")]

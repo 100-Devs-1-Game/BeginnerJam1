@@ -129,6 +129,8 @@ func _on_player_area_entered(other: Area2D) -> void:
 		die()
 	elif other_parent is LevelArea:
 		level_area = other_parent
+	elif other_parent is Coin:
+		other_parent.collect()
 	else:
 		push_error("Collided with something unexpected!")
 

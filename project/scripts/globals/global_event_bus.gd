@@ -26,6 +26,7 @@ signal sandbags_changed(new_count: int)
 signal sand_used
 signal bridge_picked_up
 signal bridge_used
+signal coin_collected
 
 # Player
 signal play_left_square(pos: Vector2i)
